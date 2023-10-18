@@ -1,0 +1,15 @@
+.error {
+    position: absolute;
+    font-size: 9px;
+    color: red;
+    bottom: 15px;
+    right: -160px;
+    margin: 0;
+    text-align: left;
+
+    li {
+        width: 150px;
+        margin: 0;
+        padding: 0;
+    }
+}

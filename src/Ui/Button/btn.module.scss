@@ -1,0 +1,30 @@
+.btn {
+
+    overflow: hidden;
+    position: relative;
+    background: var(--background-color);
+    padding: 10px 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 300px;
+    text-shadow: -1px -1px 1px rgba(255, 255, 255, .1), 1px 1px 1px rgba(0, 0, 0, .5);
+    color: var(--text-color-brown);
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: no-drop;
+    }
+
+    &:hover {
+        text-shadow: 0px 1px 1px rgba(255, 255, 255, .4), 1px 1px 1px rgba(0, 0, 0, .9);
+
+    }
+
+    &:active {
+        transform: scale(1.01);
+        background: var(--background-color-App);
+    }
+}

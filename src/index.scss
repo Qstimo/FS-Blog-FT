@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+
+
+// src/index.scss
+:root[data-theme="light"] {
+
+  --background-color: linear-gradient(45deg, #a8edea, #fed6e3);
+  --background-color-App: rgba(255, 255, 255, 0.4);
+  --text-color: #1C1E21;
+  --text-color-brown: #2F2222;
+
+}
+
+:root[data-theme="dark"] {
+  --background-color: linear-gradient(45deg, rgb(197, 154, 207), rgb(0, 24, 24));
+  --background-color-App: #00000082;
+  --text-color: #f5f6f7;
+  --text-color-brown: #bb9e9e;
+}
+
+body {
+  color: var(--text-color);
+  font-family: 'Comfortaa', sans-serif;
+
+}
+
+button {
+  font-family: 'Comfortaa', sans-serif;
+}

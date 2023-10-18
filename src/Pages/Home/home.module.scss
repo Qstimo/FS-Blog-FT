@@ -1,0 +1,14 @@
+.root {
+    display: grid;
+    grid-template-columns: auto minmax(250px, 250px);
+
+    .content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+
+
+}
