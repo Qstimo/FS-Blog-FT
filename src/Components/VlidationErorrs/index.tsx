@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './valodationErrors.module.scss';
-import { Link } from 'react-router-dom'
-import Avatar from '../../Img/avatar';
+
 
 type ValidationErrorType = {
   array: String[];

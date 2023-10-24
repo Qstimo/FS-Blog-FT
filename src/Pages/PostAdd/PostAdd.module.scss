@@ -1,0 +1,54 @@
+.root {
+    margin-top: 30px;
+    padding: 10px;
+
+    .imgLoading {
+        margin-bottom: 20px;
+        margin-right: auto;
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+        text-align: left;
+
+        img {
+            object-fit: contain;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .form {
+
+        input {
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            border-bottom: 2px solid var(--text-color);
+            outline: none;
+        }
+
+        .title {
+            font-size: 24px;
+            height: 60px;
+            padding: 10px 10px 0 10px;
+            box-sizing: border-box;
+        }
+
+        .text {
+            border: none;
+            border-bottom: 2px solid var(--text-color);
+            outline: none;
+            width: 100%;
+            border-radius: 5px;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: none;
+            font-size: 16px;
+            background: var(--background-color-App);
+        }
+
+
+    }
+
+
+}

@@ -7,7 +7,7 @@
         overflow: hidden;
         width: 50px;
         height: 50px;
-        background: linear-gradient(45deg, rgb(226, 217, 228), rgb(154, 122, 255));
+        background: var(--color-btn);
         border-radius: 50%;
         cursor: pointer;
         outline: 2px solid var(--text-color-brown);
@@ -36,10 +36,10 @@
 
         &:after {
             content: "";
-            display: block;
+            display: none;
             width: 30px;
             height: 200px;
-            margin-left: 60px;
+            margin-left: 160px;
             background: #fff;
             opacity: 0.5;
             position: absolute;
@@ -54,19 +54,26 @@
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
         }
+
+        &:hover {
+            &:after {
+                content: "";
+                display: block;
+            }
+        }
     }
 
     .btn {
         margin-right: 15px;
         overflow: hidden;
         position: relative;
-        background: linear-gradient(45deg, rgb(197, 154, 207), rgb(106, 82, 182));
+        background: var(--color-btn);
         padding: 10px 15px;
         box-sizing: border-box;
         cursor: pointer;
         border: none;
         border-radius: 10px;
-        width: 100px;
+        min-width: 100px;
         font-size: 16px;
         font-weight: 300px;
         text-shadow: -1px -1px 1px rgba(255, 255, 255, .1), 1px 1px 1px rgba(0, 0, 0, .5);
@@ -96,10 +103,10 @@
 
         &:after {
             content: "";
-            display: block;
+            display: none;
             width: 30px;
             height: 200px;
-            margin-left: 60px;
+            margin-left: 300px;
             background: #fff;
             opacity: 0.5;
             position: absolute;
@@ -107,12 +114,19 @@
             top: -100px;
             z-index: 1;
             transform: rotate(45deg);
-            transition: all 0.1s;
+            transition: all 0.5s;
             animation-name: slideme;
             animation-duration: 3s;
             animation-delay: 0.05s;
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
+        }
+
+        &:hover {
+            &:after {
+                content: "";
+                display: block;
+            }
         }
     }
 }
