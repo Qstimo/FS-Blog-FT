@@ -1,6 +1,14 @@
 .FormatButton {
+
     & .IconButton {
         padding: 8px;
-        background-color: black;
+
     }
+}
+
+.btn {
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    border-right: 2px solid var(--text-color-brown);
 }

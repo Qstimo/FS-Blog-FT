@@ -21,13 +21,14 @@ type TProps = {
     title?: string;
 };
 
-const TextEditorComponent: FC<TProps> = ({
+const TextEditorComponent: React.FC<TProps> = ({
     classes,
     htmlText,
     isInvalid = false,
     onChangeHTMLText,
     placeholder,
     title,
+
 }) => {
     const [isFocused, setFocused] = React.useState(false);
     const [editorState, setEditorState] = React.useState<EditorState>(EditorState.createEmpty());
@@ -35,7 +36,7 @@ const TextEditorComponent: FC<TProps> = ({
     let wrapperClassName = "TextEditor-Wrapper";
     const contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
-        if (contentState.getBlockMap().first().getType("") !== "unstyled") {
+        if (contentState.getBlockMap().first().getType() !== "unstyled") {
             wrapperClassName += " TextEditor-Wrapper__hidePlaceholder";
         }
     }
@@ -89,6 +90,7 @@ const TextEditorComponent: FC<TProps> = ({
         [editorState, setEditorState],
     );
 
+
     const getBlockStyle = (block: { getType: (arg0: string) => any }) => {
         switch (block.getType("")) {
             case "blockquote":
@@ -99,7 +101,7 @@ const TextEditorComponent: FC<TProps> = ({
     };
 
     return (
-        <div className={cn("TextEditor", classes?.textEditor)}>
+        <div className={cn("TextEditor", classes)}>
             <div className="TextEditor-Title">{title}</div>
             <div
                 className={cn("TextEditor-Area", {
@@ -110,7 +112,6 @@ const TextEditorComponent: FC<TProps> = ({
             >
                 <div className={wrapperClassName}>
                     <Editor
-                        blockStyleFn={getBlockStyle}
                         customStyleMap={TEXT_EDITOR_CUSTOM_STYLES}
                         editorState={editorState}
                         handleKeyCommand={handleKeyCommand}

@@ -1,14 +1,20 @@
 import React from 'react'
 import s from './comments.module.scss'
 import Avatar from '../../Img/avatar'
+import { TFetchComments } from '../../Slice/slices/post/types'
+import AvatarUrl from '../AvatarUrl'
 
-const Comment: React.FC = () => {
+type TCommentProps = {
+    comment: TFetchComments
+}
+
+const Comment: React.FC<TCommentProps> = ({ comment }) => {
     return (
 
         <div className={s.comments}>
             <div className={s.comment}>
-                <div className={s.avatar}><Avatar /> <img src='' alt="" /></div>
-                <div className={s.commentBody}> <span>Vasiliy Pupkin</span> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error possimus tenetur quaerat officiis vel, voluptate itaque. Asperiores maxime eaque inventore voluptatem totam quidem ut amet architecto. Adipisci temporibus sapiente voluptates!</p></div>
+                <AvatarUrl avatarUrl={comment.user.avatarUrl} />
+                <div className={s.commentBody}> <span>{comment.user.fullName}</span> <p>{comment.text}</p></div>
             </div>
         </div>
 

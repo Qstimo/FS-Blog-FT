@@ -1,6 +1,9 @@
 @import '../../styles/index.scss';
 
 .TextEditor {
+    box-sizing: border-box;
+    max-width: 1200px;
+
 
     h1,
     h2 {
@@ -22,6 +25,7 @@
 
     &-Wrapper {
         padding: 16px;
+
     }
 
     .DraftEditor-root {
@@ -61,15 +65,14 @@
 
     &-Area {
         box-sizing: border-box;
-        border-radius: 8px;
-        border: 1px solid $color-grey;
+        background: var(--background-color-App);
+        border-bottom: 2px solid var(--text-color);
+        border-radius: 10px;
 
-        &__isFocused {
-            border: 1px solid $color-primary;
-        }
+        &__isFocused {}
 
         &__isInvalid {
-            border: 1px solid $color-red;
+            border-bottom: 2px solid 1px solid $color-red;
         }
     }
 

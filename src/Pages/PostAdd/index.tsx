@@ -5,15 +5,28 @@ import axios from 'axios'
 import Button from '../../Ui/Button'
 import TextEditor from '../../Components/TextEditor'
 import { EditorText } from '../../Components/EditorText/TextEditor'
+import { EditorState } from 'draft-js'
 
 
 const PostAdd: React.FC = () => {
     const title = useInput('', { isEmpty: true, minLength: 3, });
     const tags = useInput('', {});
+    const text = useInput('', { minLength: 3, });
+
+    const [value, setValue] = React.useState({});
+
+
 
     const imgRef = React.useRef<HTMLInputElement | null>(null)
 
     const [img, setImg] = React.useState('');
+
+    const handleSubmitPost = (e: React.ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setValue({ title: title.value, tags: tags.value, text: text.value, img })
+        console.log(value)
+
+    }
 
     const handleCangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
         try {
@@ -28,7 +41,6 @@ const PostAdd: React.FC = () => {
             alert('Error uploading')
         }
     }
-
     return (
 
         <div className={s.root}>
@@ -39,16 +51,18 @@ const PostAdd: React.FC = () => {
 
                 <input ref={imgRef} onChange={handleCangeFile} type="file" hidden />
             </div>
-            <form onSubmit={e => { e.preventDefault() }} className={s.form}>
+            <form onSubmit={handleSubmitPost} className={s.form}>
                 <label htmlFor="">
                     {/* <ValidationErorrs array={name.stringErorr} /> */}
-                    <input className={s.title} value={title.value} onBlur={e => title.onBlur(e)} onChange={e => title.onChange(e)} type="title" placeholder='Заголовок статьи' />
+                    <input className={s.title} value={title.value} onBlur={e => title.onBlur(e)} onChange={e => title.onChange(e)} type="text" placeholder='Заголовок статьи' />
                 </label>
                 <label htmlFor="">
                     {/* <ValidationErorrs array={name.stringErorr} /> */}
-                    <input value={tags.value} onBlur={e => tags.onBlur(e)} onChange={e => tags.onChange(e)} type="tags" placeholder='#тэги' />
+                    <input value={tags.value} onBlur={e => tags.onBlur(e)} onChange={e => tags.onChange(e)} type="text" placeholder='#тэги' />
                 </label>
-                <EditorText />
+                <textarea onBlur={e => text.onBlur(e)} onChange={e => text.onChange(e)} value={text.value} placeholder='Текст статьи' className={s.text}></textarea>
+                {/* <EditorText htmlText={value} onChangeHTMLText={setValue} /> */}
+
                 <Button children='Отправить' />
             </form>
 

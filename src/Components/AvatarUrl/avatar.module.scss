@@ -1,0 +1,11 @@
+.avatar {
+    position: relative;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+    background: var(--color-btn);
+    border-radius: 50%;
+    cursor: pointer;
+    outline: 2px solid var(--text-color-brown);
+    margin-bottom: 10px;
+}

@@ -57,7 +57,7 @@ export const useInput = (initialValue: string, validations: any) => {
     const [value, setValue] = React.useState(initialValue);
     const [isDirty, setIsDirty] = React.useState(false);
     const valid = useValidation(value, validations);
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         setValue(e.target.value);
     }
     const stringErorr = (isDirty ? ([...valid].map((valid, i) => {
@@ -67,7 +67,7 @@ export const useInput = (initialValue: string, validations: any) => {
     })) : ['']).filter(function (el) {
         return el !== ' ';
     })
-    const onBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onBlur = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         setIsDirty(true)
     }
 

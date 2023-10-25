@@ -11,7 +11,7 @@
         top: 10px;
         right: 20px;
         display: flex;
-        background-color: rgba(128, 128, 128, 0.505);
+
         border-radius: 10px;
         display: none;
         gap: 10px;
@@ -38,15 +38,13 @@
     }
 
     &:hover {
-
-
         .patch {
             display: flex;
         }
     }
 
     .img {
-        background-color: var(--background-color-App);
+        background-color: var(--background-color);
         border-radius: 10px;
         overflow: hidden;
 
@@ -86,16 +84,10 @@
         .title {
             flex: 1;
 
-            .tag {
-                opacity: 0.8;
-                cursor: pointer;
 
-                &:hover {
-                    opacity: 1;
-                }
-            }
 
             h3 {
+                color: var(--text-color);
                 cursor: pointer;
                 margin: 0;
             }

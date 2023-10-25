@@ -1,4 +1,6 @@
 .root {
+    max-width: 1200px;
+    flex-grow: 1;
     margin-top: 30px;
     padding: 10px;
 
@@ -45,6 +47,7 @@
             resize: none;
             font-size: 16px;
             background: var(--background-color-App);
+            min-height: 500px;
         }
 
 

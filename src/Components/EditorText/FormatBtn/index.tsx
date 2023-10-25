@@ -27,8 +27,7 @@ export const FormatBtn: React.FC<TProps> = ({
                 onToggle?.(style)
             }}
         >
-            <button
-
+            <button className={s.btn}
                 data-testid="test-icon-button"
             >
                 <Icon type={typeIcon} />

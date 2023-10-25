@@ -7,27 +7,31 @@ import Button from '../../Ui/Button';
 import { useInput, useValidForm } from '../../hooks/validation';
 import ValidationErorrs from '../VlidationErorrs';
 import Avatar from '../../Img/avatar';
+import { useAppDispatch } from '../../Slice/store';
+import { fetchAuth } from '../../Slice/slices/auth/authSlice';
 
 
 
 
 const Auth: React.FC = () => {
-
     const email = useInput('', { isEmpty: true, IsEmail: true, });
     const password = useInput('', { isEmpty: true, minLength: 6 })
-
-
     const valid = useValidForm([...email.errorsArray, ...password.errorsArray,]);
+    const dispatch = useAppDispatch();
 
-
-
-
-    const onSubmit = () => {
-        const data = {
+    const onSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const value = {
             email: email.value,
             password: password.value
         }
-        console.log(data)
+        const data = await dispatch(fetchAuth(value));
+        if (!data.payload) {
+            alert('Не удалось авторизоваться')
+        }
+        if ('token' in data.payload) {
+            window.localStorage.setItem('token', data.payload.token);
+        }
 
     }
 

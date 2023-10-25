@@ -14,8 +14,7 @@ export const TEXT_EDITOR_STYLE_TO_HTML = (style: TTextEditorTextStyle) => {
             return <strong />;
         case "UNDERLINE":
             return <u />;
-        case "HIGHLIGHT":
-            return <span className="highlight" />;
+
         default:
             return null;
     }
@@ -36,5 +35,4 @@ export const TEXT_EDITOR_BLOCK_TYPES = [
 export const TEXT_EDITOR_INLINE_TYPES = [
     { label: "Bold", style: "BOLD", icon: "Bold", size: "extra-small" },
     { label: "Underline", style: "UNDERLINE", icon: "Underline", size: "extra-small" },
-    { label: "Highlight", style: "HIGHLIGHT", icon: "Highlight", size: "small" },
 ];
