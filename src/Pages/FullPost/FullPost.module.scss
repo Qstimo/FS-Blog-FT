@@ -52,7 +52,6 @@
         top: 10px;
         right: 20px;
         display: flex;
-        background-color: rgba(128, 128, 128, 0.505);
         border-radius: 10px;
         gap: 10px;
         display: flex;
@@ -85,11 +84,7 @@
         border-radius: 10px;
         overflow: hidden;
 
-        img {
-            object-fit: contain;
-            width: 100%;
-            height: auto;
-        }
+
     }
 
     .titleContainer {

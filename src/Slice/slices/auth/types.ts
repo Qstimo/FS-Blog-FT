@@ -7,8 +7,14 @@ export enum Status{
 }
 
 export type TRegister = {
-    name: string,
-    surname: string
+    fullName: string
+    email: string,
+    password: string,
+    avatarUrl?: string
+}
+export type TUserData = {
+    _id: string,
+    fullName: string
     email: string,
     password: string,
     avatarUrl?: string
@@ -18,6 +24,6 @@ export type TAuth = {
     password: string,
 }
 export interface TAuthResponse {
-    data: null | TAuth | TRegister,
+    data: null | TUserData,
     status: Status
 }

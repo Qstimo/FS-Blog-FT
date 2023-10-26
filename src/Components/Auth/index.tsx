@@ -29,7 +29,7 @@ const Auth: React.FC = () => {
         if (!data.payload) {
             alert('Не удалось авторизоваться')
         }
-        if ('token' in data.payload) {
+        else if ('token' in data.payload) {
             window.localStorage.setItem('token', data.payload.token);
         }
 

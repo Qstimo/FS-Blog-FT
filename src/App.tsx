@@ -1,4 +1,4 @@
-
+import React from 'react';
 import './App.scss';
 import { Route, Routes } from 'react-router-dom'
 import Home from './Pages/Home/Home';
@@ -7,7 +7,16 @@ import MainLayout from './Components/Layouts/MainLayout';
 import FullPost from './Pages/FullPost';
 import Register from './Pages/Register';
 import PostAdd from './Pages/PostAdd';
+import { useAppDispatch } from './Slice/store';
+import { useSelector } from 'react-redux';
+import { fetchAuthMe, selectIsAuth } from './Slice/slices/auth/authSlice';
 function App() {
+  const dispatch = useAppDispatch();
+  const isAuth = useSelector(selectIsAuth);
+  React.useEffect(() => {
+    dispatch(fetchAuthMe());
+  }, []);
+
   return (
     <Routes>
       <Route path='/' element={<MainLayout />} >

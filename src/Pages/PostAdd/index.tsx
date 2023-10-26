@@ -1,18 +1,20 @@
 import React from 'react'
 import s from './PostAdd.module.scss'
 import { useInput } from '../../hooks/validation'
-import axios from 'axios'
 import Button from '../../Ui/Button'
 import TextEditor from '../../Components/TextEditor'
 import { EditorText } from '../../Components/EditorText/TextEditor'
 import { EditorState } from 'draft-js'
+import { RemoveSvg } from '../../Img/svg'
+import axios from '../../Utils/axios'
+import { useNavigate } from 'react-router-dom'
 
 
 const PostAdd: React.FC = () => {
     const title = useInput('', { isEmpty: true, minLength: 3, });
     const tags = useInput('', {});
     const text = useInput('', { minLength: 3, });
-
+    const navigate = useNavigate();
     const [value, setValue] = React.useState({});
 
 
@@ -21,10 +23,23 @@ const PostAdd: React.FC = () => {
 
     const [img, setImg] = React.useState('');
 
-    const handleSubmitPost = (e: React.ChangeEvent<HTMLFormElement>) => {
+    const handleSubmitPost = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setValue({ title: title.value, tags: tags.value, text: text.value, img })
-        console.log(value)
+        try {
+            const files = {
+                title: title.value,
+                tags: tags.value,
+                text: text.value,
+                imageUrl: img
+            };
+            const { data } = await axios.post('/posts', files);
+            const _id = await data._id;
+            // setTimeout(() => {  }, 200);
+            navigate(`/posts/${_id}`);
+        } catch (error) {
+            console.warn(error);
+            alert('Ошибка загрузки');
+        }
 
     }
 
@@ -34,7 +49,7 @@ const PostAdd: React.FC = () => {
             const file = e.target.files?.[0];
             if (file) {
                 formData.append('image', file);
-                const { data } = await axios.post('/upload', formData);
+                const { data } = await axios.post('/uploads', formData);
                 setImg(data.url);
             }
         } catch (error) {
@@ -46,7 +61,8 @@ const PostAdd: React.FC = () => {
         <div className={s.root}>
             <div className={s.imgLoading} >
                 {Boolean(img) ? (
-                    <><img src={`http://localhost:4444${img}`} alt="uploading img" /><Button onClick={() => setImg('')} children='Удалить' /></>
+                    <><img className={s.image} src={`http://localhost:4444${img}`} alt="uploading img" />
+                        <button className={s.deleteImg} onClick={() => setImg('')} ><RemoveSvg /></button></>
                 ) : <Button onClick={() => imgRef.current?.click()} children='Загрузить превью' />}
 
                 <input ref={imgRef} onChange={handleCangeFile} type="file" hidden />
