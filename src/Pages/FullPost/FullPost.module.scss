@@ -56,25 +56,7 @@
         gap: 10px;
         display: flex;
 
-        .update,
-        .remove {
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-        }
 
-        .remove {
-            svg {
-                fill: var(--text-color);
-            }
-
-        }
-
-        .update {
-            svg {
-                stroke: var(--text-color);
-            }
-        }
     }
 
     &:hover {}
@@ -119,5 +101,13 @@
         align-items: center;
         justify-content: space-between;
         padding: 10px 20px;
+    }
+
+    .viewsCount {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        opacity: 0.7;
+
     }
 }

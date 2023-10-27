@@ -7,7 +7,7 @@ import { EditorText } from '../../Components/EditorText/TextEditor'
 import { EditorState } from 'draft-js'
 import { RemoveSvg } from '../../Img/svg'
 import axios from '../../Utils/axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 
 const PostAdd: React.FC = () => {
@@ -15,8 +15,20 @@ const PostAdd: React.FC = () => {
     const tags = useInput('', {});
     const text = useInput('', { minLength: 3, });
     const navigate = useNavigate();
-    const [value, setValue] = React.useState({});
+    const { id } = useParams();
+    const isEdit = Boolean(id)
 
+    React.useEffect(() => {
+        if (isEdit) {
+            axios
+                .get(`posts/${id}`)
+                .then(({ data }) => {
+
+                }).catch(erorr => {
+                    console.warn(erorr);
+                })
+        }
+    }, []);
 
 
     const imgRef = React.useRef<HTMLInputElement | null>(null)

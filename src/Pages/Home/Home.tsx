@@ -26,7 +26,10 @@ const Home: React.FC = () => {
     </div>
     <div className={s.tagsContainer}>
       <h3>Популярные теги</h3>
-      {isLoadingTags ? <Tags isLoading={isLoadingTags} /> : <Tags tags={tags.items} />}
+      <hr />
+      <div className={s.tags}>
+        {isLoadingTags ? <Tags isLoading={isLoadingTags} /> : <Tags tags={tags.items} />}
+      </div>
 
     </div>
   </div >;

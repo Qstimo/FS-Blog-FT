@@ -10,13 +10,16 @@ import { TFetchComments, TFetchPosts } from '../../Slice/slices/post/types'
 import { dataFormat } from '../../Utils'
 import AvatarUrl from '../../Components/AvatarUrl'
 import { ImgPost } from '../../Img/PostImg/PostImg'
-import { RemoveSvg, UpdateSvg } from '../../Img/svg'
+import { RemoveSvg, UpdateSvg, ViewsSvg } from '../../Img/svg'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../Slice/slices/auth/authSlice'
 
 const FullPost: React.FC = () => {
     const { id } = useParams();
     const [data, setData] = React.useState<TFetchPosts>();
     const [comments, setComments] = React.useState<TFetchComments[]>();
     const [isLoading, setIsLoading] = React.useState(true);
+    const userData = useSelector(selectUser)
     React.useEffect(() => {
         axios.get(`/posts/${id}`).then((response) => {
             setData(response.data);
@@ -34,10 +37,10 @@ const FullPost: React.FC = () => {
         <div className={s.root}>
             <div className={s.post}>
                 <div className={s.img}><ImgPost imageUrl={data.imageUrl} /></div>
-                <div className={s.patch}>
-                    <UpdateSvg />
-                    <RemoveSvg />
-                </div>
+                {(userData && userData._id === data.user._id) && <div className={s.patch}>
+                    <UpdateSvg id={data._id} />
+                    <RemoveSvg id={data._id} />
+                </div>}
                 <div className={s.titleContainer}>
                     <div className={s.user}>
                         <AvatarUrl avatarUrl={data.user.avatarUrl} />
@@ -49,11 +52,11 @@ const FullPost: React.FC = () => {
                 </div>
                 <div className={s.text}>{data.text}</div>
                 <div className={s.info}>
-                    <span className={s.viewsCount}>{data.viewsCount}</span>
+                    <span className={s.viewsCount}><ViewsSvg />{data.viewsCount}</span>
                     <div className={s.tags}> {data.tags.map((tag) => <span key={tag} className={s.tag}>{'#' + tag}</span>)} </div>
                     <span className={s.data}>{dataFormat(data.createdAt)}</span>
                 </div>
-                {data.createdAt !== data.updatedAt && <span className={s.dataUp}>Изменено: {dataFormat(data.updatedAt)}</span>}
+                {dataFormat(data.createdAt) !== dataFormat(data.updatedAt) && <span className={s.dataUp}>Изменено: {dataFormat(data.updatedAt)}</span>}
             </div>
             {comments && comments.map(item => < Comment comment={item} key={item._id} />)}
 
