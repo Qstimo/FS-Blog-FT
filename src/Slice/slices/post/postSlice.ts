@@ -4,8 +4,10 @@ import axios from '../../../Utils/axios'
 import {Status, TPosts} from './types'
 import { RootState } from '../../store'
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async ()=>{
-    const {data} = await axios.get('/posts')
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (searchTerm?:string)=>{
+    const {data} = searchTerm
+    ?  await  axios.get(`/posts?searchTerm=${searchTerm}`)
+    : await axios.get(`/posts`)
     return data
 })
 

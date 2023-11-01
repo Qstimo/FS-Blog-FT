@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux'
 import { selectUser } from '../../Slice/slices/auth/authSlice'
 import { CommentsSvg, RemoveSvg, UpdateSvg, ViewsSvg } from '../../Img/svg'
 import { ImgPost } from '../../Img/PostImg/PostImg'
+import PostSkeleton from './skelton'
 
 type TPost = {
     isLoading?: boolean,
@@ -18,25 +19,32 @@ type TPost = {
 
 }
 
-const Post: React.FC<TPost> = ({ isLoading = false, post }) => {
+const Post: React.FC<TPost> = ({ isLoading, post }) => {
+
+    const formatTitle = (title: string) => {
+        const string = title.split('');
+        if (string.length > 70) {
+            return string.splice(70).join('') + '...'
+        }
+        return title
+    }
 
     const userData = useSelector(selectUser);
 
-    if (isLoading || !post) return <div></div>;
+    if (isLoading || !post) return <PostSkeleton />;
 
     return (
 
         <Link to={`/posts/${post._id}`} >
             <div className={s.post}>
                 <div className={s.img}><ImgPost imageUrl={post.imageUrl} /></div>
-
                 <div className={s.titleContainer}>
                     <div className={s.user}>
                         <AvatarUrl avatarUrl={post.user.avatarUrl} />
                         <span>{post.user.fullName}</span>
                     </div>
                     <div className={s.title}>
-                        <h3 >{post.title}</h3>
+                        <h3 >{formatTitle(post.title)}</h3>
                         <Tags tags={post.tags} />
                     </div>
                 </div>

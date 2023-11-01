@@ -49,6 +49,7 @@
         }
 
         .text {
+            color: var(--text-color);
             border: none;
             border-bottom: 2px solid var(--text-color);
             outline: none;

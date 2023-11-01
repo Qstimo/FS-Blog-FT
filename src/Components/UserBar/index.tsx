@@ -1,8 +1,7 @@
 import React from 'react';
 import s from './UserBar.module.scss';
 import { Link, useNavigate } from 'react-router-dom'
-import Avatar from '../../Img/avatar';
-import Button from '../../Ui/Button';
+
 import { useSelector } from 'react-redux';
 import { logout, selectIsAuth, selectUser } from '../../Slice/slices/auth/authSlice';
 import { useAppDispatch } from '../../Slice/store';

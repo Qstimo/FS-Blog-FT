@@ -1,13 +1,12 @@
 import React from 'react'
+
 import s from './PostAdd.module.scss'
 import { useInput } from '../../hooks/validation'
 import Button from '../../Ui/Button'
-import TextEditor from '../../Components/TextEditor'
-import { EditorText } from '../../Components/EditorText/TextEditor'
-import { EditorState } from 'draft-js'
 import { RemoveSvg } from '../../Img/svg'
 import axios from '../../Utils/axios'
 import { useNavigate, useParams } from 'react-router-dom'
+import ValidationErorrs from '../../Components/VlidationErorrs'
 
 
 const PostAdd: React.FC = () => {
@@ -17,13 +16,17 @@ const PostAdd: React.FC = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const isEdit = Boolean(id)
+    const [img, setImg] = React.useState('');
 
     React.useEffect(() => {
         if (isEdit) {
             axios
                 .get(`posts/${id}`)
                 .then(({ data }) => {
-
+                    title.setValue(data.title);
+                    tags.setValue(data.tags.join(' '));
+                    text.setValue(data.text);
+                    setImg(data.imageUrl)
                 }).catch(erorr => {
                     console.warn(erorr);
                 })
@@ -33,7 +36,6 @@ const PostAdd: React.FC = () => {
 
     const imgRef = React.useRef<HTMLInputElement | null>(null)
 
-    const [img, setImg] = React.useState('');
 
     const handleSubmitPost = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -44,8 +46,10 @@ const PostAdd: React.FC = () => {
                 text: text.value,
                 imageUrl: img
             };
-            const { data } = await axios.post('/posts', files);
-            const _id = await data._id;
+            const { data } = isEdit
+                ? await axios.patch(`/posts/${id}`, files)
+                : await axios.post('/posts', files)
+            const _id = isEdit ? id : data._id;
             // setTimeout(() => {  }, 200);
             navigate(`/posts/${_id}`);
         } catch (error) {
@@ -81,13 +85,14 @@ const PostAdd: React.FC = () => {
             </div>
             <form onSubmit={handleSubmitPost} className={s.form}>
                 <label htmlFor="">
-                    {/* <ValidationErorrs array={name.stringErorr} /> */}
+                    <ValidationErorrs array={title.stringErorr} />
                     <input className={s.title} value={title.value} onBlur={e => title.onBlur(e)} onChange={e => title.onChange(e)} type="text" placeholder='Заголовок статьи' />
                 </label>
                 <label htmlFor="">
-                    {/* <ValidationErorrs array={name.stringErorr} /> */}
+                    <ValidationErorrs array={tags.stringErorr} />
                     <input value={tags.value} onBlur={e => tags.onBlur(e)} onChange={e => tags.onChange(e)} type="text" placeholder='#тэги' />
                 </label>
+                <ValidationErorrs array={text.stringErorr} />
                 <textarea onBlur={e => text.onBlur(e)} onChange={e => text.onChange(e)} value={text.value} placeholder='Текст статьи' className={s.text}></textarea>
                 {/* <EditorText htmlText={value} onChangeHTMLText={setValue} /> */}
 

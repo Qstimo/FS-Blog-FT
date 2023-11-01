@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import themeReducer from '../Components/theme/slice';
 import posts from './slices/post/postSlice';
 import auth from './slices/auth/authSlice'
+import filter from './slices/filter/filterSlice'
 import { useDispatch } from 'react-redux';
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     theme: themeReducer,
     posts,
     auth,
+    filter,
   },
 });
 

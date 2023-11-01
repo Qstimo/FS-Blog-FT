@@ -24,6 +24,7 @@ function App() {
         <Route path='posts/:id' element={<FullPost />}></Route>
         <Route path='/auth' element={<Register />}></Route>
         <Route path='/created' element={<PostAdd />}></Route>
+        <Route path='/update/:id' element={<PostAdd />}></Route>
       </Route>
 
     </Routes>

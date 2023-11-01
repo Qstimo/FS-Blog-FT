@@ -78,5 +78,6 @@ export const useInput = (initialValue: string, validations: any) => {
         isDirty,
         stringErorr,
         errorsArray: [...valid],
+        setValue,
     }
 }

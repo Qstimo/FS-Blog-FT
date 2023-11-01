@@ -13,25 +13,31 @@ import { ImgPost } from '../../Img/PostImg/PostImg'
 import { RemoveSvg, UpdateSvg, ViewsSvg } from '../../Img/svg'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../Slice/slices/auth/authSlice'
+import Tags from '../../Components/Tags'
+import FullPostSkeleton from './skelton'
 
 const FullPost: React.FC = () => {
     const { id } = useParams();
     const [data, setData] = React.useState<TFetchPosts>();
     const [comments, setComments] = React.useState<TFetchComments[]>();
     const [isLoading, setIsLoading] = React.useState(true);
+    const [send, setSend] = React.useState(true);
     const userData = useSelector(selectUser)
     React.useEffect(() => {
         axios.get(`/posts/${id}`).then((response) => {
             setData(response.data);
             setIsLoading(false)
         }).catch((error) => alert(error));
+    }, [])
+
+    React.useEffect(() => {
         axios.get(`/posts/${id}/comments`).then((response) => {
             setComments(response.data);
         }).catch((error) => alert(error));
 
-    }, [])
+    }, [send])
 
-    if (isLoading || !data) { return <div>loading...</div> }
+    if (isLoading || !data) { return <FullPostSkeleton /> }
 
     return (
         <div className={s.root}>
@@ -53,14 +59,16 @@ const FullPost: React.FC = () => {
                 <div className={s.text}>{data.text}</div>
                 <div className={s.info}>
                     <span className={s.viewsCount}><ViewsSvg />{data.viewsCount}</span>
-                    <div className={s.tags}> {data.tags.map((tag) => <span key={tag} className={s.tag}>{'#' + tag}</span>)} </div>
+                    <Tags tags={data.tags} />
+                    {/* <div className={s.tags}> {data.tags.map((tag) => <span key={tag} className={s.tag}>{'#' + tag}</span>)} </div> */}
                     <span className={s.data}>{dataFormat(data.createdAt)}</span>
                 </div>
                 {dataFormat(data.createdAt) !== dataFormat(data.updatedAt) && <span className={s.dataUp}>Изменено: {dataFormat(data.updatedAt)}</span>}
             </div>
-            {comments && comments.map(item => < Comment comment={item} key={item._id} />)}
+            <CommentAdd setSend={setSend} send={send} comments={comments} setComments={setComments} id={id} />
+            {comments && comments.map(item => <Comment comment={item} key={item._id} />)}
 
-            <CommentAdd />
+
         </div>
 
     )

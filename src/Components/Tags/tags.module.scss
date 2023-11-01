@@ -2,6 +2,7 @@
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
+    padding: 10px;
 }
 
 .tag {
@@ -12,4 +13,9 @@
     &:hover {
         opacity: 1;
     }
+}
+
+.tagSkeleton {
+    margin-top: 20px;
+
 }

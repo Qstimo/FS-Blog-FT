@@ -7,7 +7,9 @@ type PAvatar = {
 
 const AvatarUrl: React.FC<PAvatar> = ({ avatarUrl }) => {
     return (
-        <div className={s.avatar}>{Boolean(avatarUrl) ? <img className={s.image} src={`http://localhost:4444${avatarUrl}`} alt="avatar" /> : <Avatar />}</div>
+        <div className={s.avatar}>{Boolean(avatarUrl)
+            ? <img className={s.image} src={`http://localhost:4444${avatarUrl}`} alt="avatar" />
+            : <Avatar />}</div>
 
     )
 }

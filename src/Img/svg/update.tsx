@@ -7,13 +7,10 @@ type TSvgBtn = {
     id: string
 }
 export const UpdateSvg: React.FC<TSvgBtn> = ({ id }) => {
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const hanldleRemove = (id: string) => {
-        if (window.confirm('Вы точно хотите удалить этот пост?')) {
-            ;
-            navigate('/')
-        }
+        navigate(`/update/${id}`)
+
     }
 
     return (

@@ -39,4 +39,55 @@
         }
     }
 
+    .searchContainer {
+        position: relative;
+        padding: 2px 0px 0 0;
+
+        &:hover {
+            .search {}
+        }
+
+        .search {
+
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            position: absolute;
+            left: 70px;
+            top: -8px;
+
+            display: block;
+            width: 200px;
+            transition: all 0.3s ease-in;
+            border-bottom: 1px solid var(--text-color);
+
+            animation-name: search;
+            animation-duration: 1s;
+
+            &:hover,
+            &:active,
+            &:focus {
+                outline: none;
+            }
+
+            @keyframes search {
+                0% {
+                    opacity: 0.2;
+                    left: -130px;
+                    margin-left: 0px;
+                }
+
+                30% {
+                    opacity: 0.6;
+                    left: 110%;
+                }
+
+                100% {
+                    opacity: 1;
+                    left: 70px;
+                }
+            }
+        }
+    }
+
 }
