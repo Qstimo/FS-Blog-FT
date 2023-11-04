@@ -19,21 +19,19 @@ const UserBar: React.FC = () => {
       window.localStorage.removeItem('token');
       navigate('/auth')
     }
-
-
   }
-  return <>
-    <div className={s.userMenu}>
-      {isAuth
-        ? <><Link to='/created'>  <button className={s.btn}>Создать пост</button></Link>
-          <button onClick={logoutUser} className={s.btn}>Выйти</button>
-          <AvatarUrl avatarUrl={data?.avatarUrl} /></>
-        : <Link to='/auth'> <button className={s.btn}>Войти</button></Link>}
+  const [auth, setAuth] = React.useState(false);
+  React.useEffect(() => {
+    setAuth(isAuth);
+  }, [isAuth]);
+  return <div className={s.userMenu}>
+    {auth
+      ? <><Link to='/created'>  <button className={s.btn}>Создать пост</button></Link>
+        <button onClick={logoutUser} className={s.btn}>Выйти</button>
+        <AvatarUrl avatarUrl={data?.avatarUrl} /></>
+      : <Link to='/auth'> <button className={s.btn}>Войти</button></Link>}
+  </div>
 
-
-
-    </div>
-  </>
 
 };
 

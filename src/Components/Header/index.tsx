@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './header.module.scss';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import Theme from '../theme';
 import UserBar from '../UserBar';
@@ -28,6 +28,8 @@ const Header: React.FC = () => {
     setValue(ev);
     changeSearchDebounce(ev);
   }
+  const { pathname } = useLocation();
+
 
 
   return <div className={s.root}>
@@ -41,10 +43,11 @@ const Header: React.FC = () => {
           <Link to={'/'}>Главная</Link>
         </li>
 
-        <li className={s.searchContainer} >
-          <span onClick={() => selectSearchOn(!searchOn)}>  Поиск</span>
-          {searchOn && <input value={value} onChange={changeSearch} className={s.search} type="text" />}
-        </li>
+        {pathname === '/' &&
+          <li className={s.searchContainer} >
+            <span onClick={() => selectSearchOn(!searchOn)}>  Поиск</span>
+            {searchOn && <input value={value} onChange={changeSearch} className={s.search} type="text" />}
+          </li>}
       </ul>
       <UserBar />
     </div>

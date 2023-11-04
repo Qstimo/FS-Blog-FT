@@ -21,8 +21,22 @@ const Home: React.FC = () => {
     dispatch(fetchTags());
   }, [search]);
 
+  const [select, setSelect] = React.useState({ name: 'Популярные', sortProperty: 'populate' });
+  const selectItem = (obj: any) => {
+    setSelect(obj);
+  }
+  const list = [
+    { name: 'Популярные', sortProperty: 'populate' },
+    { name: 'Новые', sortProperty: 'news' },
+  ]
+
   return <div className={s.root}>
     <div className={s.content}>
+      <div className={s.select}> {list.map(obj => <span
+        key={obj.name}
+        className={obj.sortProperty === select.sortProperty ? s.active : ''}
+        onClick={() => selectItem(obj)}
+      >{obj.name}</span>)} </div>
       {isLoadingPosts ? [...new Array(6)].map((e, i) => < Post key={i} isLoading={true} />) : posts.items.map(item => < Post post={item} key={item._id} />)}
     </div>
     <div className={s.tagsContainer}>
