@@ -3,25 +3,34 @@ import React from 'react';
 import s from './home.module.scss'
 import Post from '../../Components/Post';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts, fetchTags, selectPostData } from '../../Slice/slices/post/postSlice';
+import { fetchLastPopulatePosts, fetchPopulatePosts, fetchPosts, fetchTags, selectPostData } from '../../Slice/slices/post/postSlice';
 import { Status } from '../../Slice/slices/post/types';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import { RootState, useAppDispatch } from '../../Slice/store';
 import Tags from '../../Components/Tags';
 import { selectSearch } from '../../Slice/slices/filter/filterSlice';
+import MicroPost from '../../Components/Post/microPost';
 
 const Home: React.FC = () => {
-  const { posts, tags } = useSelector(selectPostData);
+  const { posts, tags, latsPopulatePost } = useSelector(selectPostData);
   const isLoadingPosts = posts.status === 'loading';
+  const isLoadingBar = latsPopulatePost.status === 'loading';
   const isLoadingTags = tags.status === Status.LOADING;
   const dispatch = useAppDispatch()
+  const [select, setSelect] = React.useState({ name: 'Новые', sortProperty: 'news' });
   const search = useSelector(selectSearch)
   React.useEffect(() => {
-    dispatch(fetchPosts(search));
+    select.sortProperty === 'populate'
+      ? dispatch(fetchPopulatePosts(search))
+      : dispatch(fetchPosts(search))
+  }, [search, select]);
+  React.useEffect(() => {
     dispatch(fetchTags());
-  }, [search]);
+    dispatch(fetchLastPopulatePosts())
+  }, []);
+  console.log(latsPopulatePost?.items)
 
-  const [select, setSelect] = React.useState({ name: 'Популярные', sortProperty: 'populate' });
+
   const selectItem = (obj: any) => {
     setSelect(obj);
   }
@@ -44,6 +53,12 @@ const Home: React.FC = () => {
       <hr />
       <div className={s.tags}>
         {isLoadingTags ? <Tags isLoading={isLoadingTags} /> : <Tags tags={tags.items} />}
+      </div>
+
+      <div className={s.sideBar}>
+        <h4>Лучшие публикации:</h4>
+        <hr />
+        {isLoadingBar ? [...new Array(6)].map((e, i) => < MicroPost key={i} isLoading={true} />) : latsPopulatePost.items.map(item => < MicroPost post={item} key={item._id} />)}
       </div>
 
     </div>

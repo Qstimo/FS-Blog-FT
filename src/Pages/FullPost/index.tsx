@@ -42,7 +42,7 @@ const FullPost: React.FC = () => {
     return (
         <div className={s.root}>
             <div className={s.post}>
-                <div className={s.img}><ImgPost imageUrl={data.imageUrl} /></div>
+                <div className={s.img}><ImgPost isFull={true} imageUrl={data.imageUrl} /></div>
                 {(userData && userData._id === data.user._id) && <div className={s.patch}>
                     <UpdateSvg id={data._id} />
                     <RemoveSvg id={data._id} />

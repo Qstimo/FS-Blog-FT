@@ -49,4 +49,8 @@ export interface TPosts{
         items:string[],
         status: Status
     }
+    latsPopulatePost:{
+        items:TFetchPosts[],
+        status: Status
+    }
 }

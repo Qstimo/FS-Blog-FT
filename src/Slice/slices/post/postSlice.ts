@@ -5,10 +5,42 @@ import {Status, TPosts} from './types'
 import { RootState } from '../../store'
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (searchTerm?:string)=>{
-    const {data} = searchTerm
+    try {
+           const {data} = searchTerm
     ?  await  axios.get(`/posts?searchTerm=${searchTerm}`)
     : await axios.get(`/posts`)
-    return data
+    return data 
+    } catch (error) {
+        console.log(error)
+    }
+
+})
+export const fetchLastPopulatePosts = createAsyncThunk('posts/fetchLastPopulatePosts', async ()=>{
+    try {
+           const {data} = await axios.get(`/posts/last/populate`)
+    return data 
+    } catch (error) {
+        console.log(error)
+    }
+
+})
+export const fetchPopulatePosts = createAsyncThunk('posts/fetchPopulatePosts', async (searchTerm?:string)=>{
+   
+    const {data} = searchTerm
+    ?  await  axios.get(`/posts/populate?searchTerm=${searchTerm}`)
+    : await axios.get(`/posts/populate `)
+    return data 
+ 
+
+})
+export const fetchTagsPosts = createAsyncThunk('posts/fetchTagsPosts', async (searchTerm?:string)=>{
+   
+    const {data} = searchTerm
+    ?  await  axios.get(`/searchtags?searchTerm=${searchTerm}`)
+    : await axios.get(`/posts `)
+    return data 
+ 
+
 })
 
 export const fetchTags = createAsyncThunk('tags/fetchTags', async ()=>{
@@ -30,6 +62,10 @@ const initialState:TPosts = {
     tags:{
         items:[],
         status: Status.LOADING,
+    },
+    latsPopulatePost:{
+        items:[],
+        status: Status.LOADING,
     }
 
 }
@@ -39,6 +75,7 @@ const postSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers:(builder)=>{
+        //поиск постов по дате
         builder.addCase(fetchPosts.pending,(state)=>{
             state.posts.status = Status.LOADING
             state.posts.items = [];
@@ -50,6 +87,45 @@ const postSlice = createSlice({
         builder.addCase(fetchPosts.rejected,(state)=>{
             state.posts.status = Status.ERROR
             state.posts.items = [];
+        })
+//поиск по популярности
+        builder.addCase(fetchPopulatePosts.pending,(state)=>{
+            state.posts.status = Status.LOADING
+            state.posts.items = [];
+        })
+        builder.addCase(fetchPopulatePosts.fulfilled,(state,action)=>{
+            state.posts.status = Status.SUCCESS
+            state.posts.items = action.payload;
+        })
+        builder.addCase(fetchPopulatePosts.rejected,(state)=>{
+            state.posts.status = Status.ERROR
+            state.posts.items = [];
+        })
+//поиск по тегу
+        builder.addCase(fetchTagsPosts.pending,(state)=>{
+            state.posts.status = Status.LOADING
+            state.posts.items = [];
+        })
+        builder.addCase(fetchTagsPosts.fulfilled,(state,action)=>{
+            state.posts.status = Status.SUCCESS
+            state.posts.items = action.payload;
+        })
+        builder.addCase(fetchTagsPosts.rejected,(state)=>{
+            state.posts.status = Status.ERROR
+            state.posts.items = [];
+        })
+
+        builder.addCase(fetchLastPopulatePosts.pending,(state)=>{
+            state.latsPopulatePost.status = Status.LOADING
+            state.latsPopulatePost.items = [];
+        })
+        builder.addCase(fetchLastPopulatePosts.fulfilled,(state,action)=>{
+            state.latsPopulatePost.status = Status.SUCCESS
+            state.latsPopulatePost.items = action.payload;
+        })
+        builder.addCase(fetchLastPopulatePosts.rejected,(state)=>{
+            state.latsPopulatePost.status = Status.ERROR
+            state.latsPopulatePost.items = [];
         })
 
         builder.addCase(fetchTags.pending,(state)=>{
@@ -70,5 +146,6 @@ const postSlice = createSlice({
 })
 
 export const selectPostData = (state:RootState)=> state.posts;
+
 
 export default postSlice.reducer;
