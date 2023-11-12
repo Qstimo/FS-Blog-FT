@@ -29,6 +29,10 @@
 
 }
 
+a {
+  color: var(--text-color);
+}
+
 ////
 /// /*кнопка переключения темы*/
 .switch {
@@ -70,4 +74,31 @@
 
 .switch input[type='checkbox']:checked+label::before {
   transform: translateX(26px);
+}
+
+.user-bar-enter {
+  transform: translateY(-100px);
+  transition: all 500ms ease-in-out;
+}
+
+.user-bar-enter-active {
+  transition: all 500ms ease-in-out;
+  transform: translateY(-10px);
+
+
+
+}
+
+.user-bar-exit {
+  opacity: 0.3;
+  transition: all 1s ease-in-out;
+  transform: translateY(-10px);
+
+
+}
+
+.user-bar-exit-active {
+  transform: translateY(-100px);
+  transition: all 1s ease-in-out;
+
 }

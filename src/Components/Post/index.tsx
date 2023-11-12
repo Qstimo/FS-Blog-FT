@@ -37,14 +37,22 @@ const Post: React.FC<TPost> = ({ isLoading, post }) => {
 
         <Link to={`/posts/${post._id}`} >
             <div className={s.post}>
-                <div className={s.img}><ImgPost imageUrl={post.imageUrl} /></div>
+                <div className={s.img}><ImgPost imageUrl={post.imageUrl} />
+                </div>
                 <div className={s.titleContainer}>
                     <div className={s.user}>
                         <AvatarUrl avatarUrl={post.user.avatarUrl} />
                         <span>{post.user.fullName}</span>
                     </div>
                     <div className={s.title}>
-                        <h3 >{formatTitle(post.title)}</h3>
+                        {post.imageUrl
+                            ? <div className={s.title}>
+                                <h3 >{formatTitle(post.title)}</h3>
+                            </div>
+                            : <div className={s.titleFull}>
+                                <h3 >{formatTitle(post.title)}</h3>
+                            </div>
+                        }
                         <Tags tags={post.tags} />
                     </div>
                 </div>

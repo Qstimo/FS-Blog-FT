@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux'
 import { selectUser } from '../../Slice/slices/auth/authSlice'
 import Tags from '../../Components/Tags'
 import FullPostSkeleton from './skelton'
+import Slider from '../../Components/Slider'
 
 const FullPost: React.FC = () => {
     const { id } = useParams();
@@ -42,7 +43,7 @@ const FullPost: React.FC = () => {
     return (
         <div className={s.root}>
             <div className={s.post}>
-                <div className={s.img}><ImgPost isFull={true} imageUrl={data.imageUrl} /></div>
+                <div className={s.img}><ImgPost imageUrl={data.imageUrl} /></div>
                 {(userData && userData._id === data.user._id) && <div className={s.patch}>
                     <UpdateSvg id={data._id} />
                     <RemoveSvg id={data._id} />
@@ -66,7 +67,10 @@ const FullPost: React.FC = () => {
                 {dataFormat(data.createdAt) !== dataFormat(data.updatedAt) && <span className={s.dataUp}>Изменено: {dataFormat(data.updatedAt)}</span>}
             </div>
             <CommentAdd setSend={setSend} send={send} comments={comments} setComments={setComments} id={id} />
-            {comments && comments.map(item => <Comment comment={item} key={item._id} />)}
+            <div className={s.dopContent}>
+                <div className="">{comments && comments.map(item => <Comment comment={item} key={item._id} />)}</div>
+                <Slider />
+            </div>
 
 
         </div>

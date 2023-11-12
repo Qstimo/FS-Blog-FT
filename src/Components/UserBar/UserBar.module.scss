@@ -1,6 +1,9 @@
 .userMenu {
     display: flex;
     align-items: center;
+    position: relative;
+
+
 
     .avatarImg {
         position: relative;
@@ -126,6 +129,87 @@
             &:after {
                 content: "";
                 display: block;
+            }
+        }
+    }
+
+    .userBar {
+        width: 250px;
+        padding: 20px;
+        background: var(--background-color-App);
+        position: absolute;
+        border-radius: 10px;
+        z-index: 2;
+        top: -10px;
+        right: -5%;
+
+        .closeSvg {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+
+            svg {
+                stroke: var(--text-color);
+                width: 25px;
+                height: 25px;
+
+                &:hover {
+                    transition: transform 0.4s ease-in-out;
+                    transform: rotate(360deg);
+                    stroke: red;
+                }
+            }
+        }
+
+        .user {
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            gap: 10px;
+        }
+
+        ul {
+            text-align: left;
+            line-height: 24px;
+            font-size: 18px;
+            font-weight: 600;
+            overflow: hidden;
+
+            a {
+                color: var(--text-color-brown);
+            }
+
+            li {
+                padding: 4px;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+                position: relative;
+
+                &::after {
+                    content: '';
+                    width: 100%;
+                    height: 0px;
+                    position: absolute;
+                    background: var(--text-color);
+                    left: 0;
+                    bottom: 0;
+                    transform: translateX(-100%);
+                    opacity: 0.5;
+                }
+
+                &:hover {
+                    transform: scale(1.02);
+
+                    &::after {
+                        transition: all 0.3s ease-in-out;
+                        height: 2px;
+
+                        transform: translateX(0);
+                        opacity: 1;
+                        display: block;
+                    }
+                }
             }
         }
     }

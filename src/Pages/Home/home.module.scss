@@ -1,6 +1,6 @@
 .root {
     display: grid;
-    grid-template-columns: auto minmax(250px, 250px);
+    grid-template-columns: auto minmax(250px, 400px);
     max-width: 1200px;
     flex-grow: 1;
     gap: 15px;
