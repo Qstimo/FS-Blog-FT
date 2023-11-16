@@ -10,7 +10,7 @@ import { TFetchComments, TFetchPosts } from '../../Slice/slices/post/types'
 import { dataFormat } from '../../Utils'
 import AvatarUrl from '../../Components/AvatarUrl'
 import { ImgPost } from '../../Img/PostImg/PostImg'
-import { RemoveSvg, UpdateSvg, ViewsSvg } from '../../Img/svg'
+import { Loading, RemoveSvg, UpdateSvg, ViewsSvg } from '../../Img/svg'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../Slice/slices/auth/authSlice'
 import Tags from '../../Components/Tags'
@@ -22,21 +22,25 @@ const FullPost: React.FC = () => {
     const [data, setData] = React.useState<TFetchPosts>();
     const [comments, setComments] = React.useState<TFetchComments[]>();
     const [isLoading, setIsLoading] = React.useState(true);
+    const [isLoadingComment, setIsLoadingComment] = React.useState(true);
     const [send, setSend] = React.useState(true);
     const userData = useSelector(selectUser)
     React.useEffect(() => {
+        window.scrollTo(0, 0);
         axios.get(`/posts/${id}`).then((response) => {
             setData(response.data);
             setIsLoading(false)
         }).catch((error) => alert(error));
-    }, [])
+    }, [id])
 
     React.useEffect(() => {
+        setIsLoadingComment(true)
         axios.get(`/posts/${id}/comments`).then((response) => {
             setComments(response.data);
+            setIsLoadingComment(false)
         }).catch((error) => alert(error));
 
-    }, [send])
+    }, [send, id])
 
     if (isLoading || !data) { return <FullPostSkeleton /> }
 
@@ -54,7 +58,7 @@ const FullPost: React.FC = () => {
                         <span>{data.user.fullName}</span>
                     </div>
                     <div className={s.title}>
-                        <h3 >{data.title}</h3>
+                        <h2 >{data.title}</h2>
                     </div>
                 </div>
                 <div className={s.text}>{data.text}</div>
@@ -64,11 +68,13 @@ const FullPost: React.FC = () => {
                     {/* <div className={s.tags}> {data.tags.map((tag) => <span key={tag} className={s.tag}>{'#' + tag}</span>)} </div> */}
                     <span className={s.data}>{dataFormat(data.createdAt)}</span>
                 </div>
-                {dataFormat(data.createdAt) !== dataFormat(data.updatedAt) && <span className={s.dataUp}>Изменено: {dataFormat(data.updatedAt)}</span>}
             </div>
-            <CommentAdd setSend={setSend} send={send} comments={comments} setComments={setComments} id={id} />
             <div className={s.dopContent}>
-                <div className="">{comments && comments.map(item => <Comment comment={item} key={item._id} />)}</div>
+                <div className={s.comments}>
+                    <CommentAdd setSend={setSend} send={send} comments={comments} setComments={setComments} id={id} />
+                    {comments && comments.map(item => <Comment comment={item} key={item._id} />)}
+                    {isLoadingComment && <Loading />}
+                </div>
                 <Slider />
             </div>
 

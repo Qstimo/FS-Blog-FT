@@ -36,6 +36,7 @@
         flex: 1 1 auto;
         text-align: left;
         line-height: 24px;
+        background: var(--background-color-content);
     }
 
     .tag {
@@ -80,10 +81,15 @@
 
         .title {
             flex: 1;
+            padding: 20px;
 
-            h3 {
-                cursor: pointer;
+            h2 {
+                word-wrap: break-word;
+                width: 500px;
+
                 margin: 0;
+                font-size: 28px;
+                font-weight: bold;
             }
         }
     }
@@ -118,6 +124,11 @@
 }
 
 .dopContent {
+    padding: 20px 10px 30px 10px;
     display: grid;
     grid-template-columns: auto minmax(250px, 400px);
+
+    .comments {
+        padding: 5px;
+    }
 }

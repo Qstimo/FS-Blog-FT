@@ -29,7 +29,6 @@ const MicroPost: React.FC<TPost> = ({ isLoading, post }) => {
         return title
     }
 
-    const userData = useSelector(selectUser);
 
     if (isLoading || !post) return <>Loading</>;
 

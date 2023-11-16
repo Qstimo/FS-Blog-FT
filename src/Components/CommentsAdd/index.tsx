@@ -9,6 +9,7 @@ import AvatarUrl from '../AvatarUrl'
 import { useSelector } from 'react-redux'
 import { selectIsAuth, selectUser } from '../../Slice/slices/auth/authSlice'
 import { TFetchComments } from '../../Slice/slices/post/types'
+import { SendSvg } from '../../Img/svg'
 type TComment = {
     id: string | undefined,
     setComments: (data: any) => void,
@@ -41,22 +42,27 @@ const CommentAdd: React.FC<TComment> = ({ id, setComments, comments, setSend, se
 
     }
     if (!isAuth) {
-        return <div className="">Чтобы оставить комментарий необходимо авторизоваться</div>
+        return <div className={s.NoAuth}>Чтобы оставить комментарий необходимо авторизоваться</div>
     }
     return (
 
-        <div className={s.comments}>
-            <div className={s.comment}>
-                <AvatarUrl avatarUrl={data?.avatarUrl} />
-                <div className={s.commentBody}>
-                    <span>{data?.fullName}</span>
-                    <form onSubmit={handleSubmitComment}>
-                        <textarea className={s.textarea} value={text.value} onChange={e => text.onChange(e)} onBlur={e => text.onBlur(e)} maxLength={180} rows={3} name="text" placeholder='Текст комментария ' />
-                        <Button children='Отправить' />
-                    </form>
+        <div className={s.comment}>
+
+            <form onSubmit={handleSubmitComment}>
+                <div className={s.textContainer} >
+                    <textarea
+                        className={s.textarea}
+                        value={text.value}
+                        onChange={e => text.onChange(e)}
+                        onBlur={e => text.onBlur(e)}
+                        maxLength={180} rows={4} name="text"
+                        placeholder='Текст комментария ' >
+                    </textarea>
+                    {text.value.length > 5 && <button><SendSvg /></button>}
                 </div>
 
-            </div>
+            </form>
+
         </div>
 
 

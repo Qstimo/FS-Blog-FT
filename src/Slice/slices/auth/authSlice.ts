@@ -75,4 +75,5 @@ extraReducers:(builder) => {
 export const {logout} = authSlice.actions;
 export const selectIsAuth = (state:RootState) => Boolean(state.auth.data);
 export const selectUser = (state:RootState) => (state.auth.data);
+export const selectStatusUser = (state:RootState) => (state.auth.status);
 export default authSlice.reducer

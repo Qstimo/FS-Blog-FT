@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { logout, selectIsAuth, selectUser } from '../../Slice/slices/auth/authSlice';
 import { useAppDispatch } from '../../Slice/store';
 import AvatarUrl from '../AvatarUrl';
+import { ExitSvg } from '../../Img/svg';
 
 const UserBar: React.FC = () => {
   const navigate = useNavigate();
@@ -19,6 +20,20 @@ const UserBar: React.FC = () => {
       navigate('/auth');
     }
   };
+  const popupRef = React.useRef<HTMLDivElement>(null);
+  const handleClick = (event: MouseEvent) => {
+    if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+      setOpen(false)
+    }
+  };
+
+
+  React.useEffect(() => {
+    document.body.addEventListener('mousedown', handleClick);
+    return () => document.body.removeEventListener('mousedown', handleClick);
+  }, []);
+
+
   const [auth, setAuth] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   React.useEffect(() => {
@@ -45,7 +60,7 @@ const UserBar: React.FC = () => {
           <TransitionGroup>
             {open && (
               <CSSTransition in={open} classNames="user-bar" timeout={300}>
-                <div className={s.userBar}>
+                <div ref={popupRef} className={s.userBar}>
                   <div onClick={closeUserBar} className={s.closeSvg}>
                     <svg
                       width="64px"
@@ -97,7 +112,7 @@ const UserBar: React.FC = () => {
                   <ul>
                     <Link to={'./user'}><li>Странница профиля</li></Link>
                     <li>Мои посты</li>
-                    <li onClick={logoutUser}>Выйти</li>
+                    <li onClick={logoutUser}><span>Выйти <ExitSvg fill={'var(--text-color-brown)'} /></span></li>
                   </ul>
                 </div>
               </CSSTransition>

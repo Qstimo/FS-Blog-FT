@@ -77,7 +77,9 @@
                 color: var(--text-color);
                 cursor: pointer;
                 margin: 0;
-                font-size: 34px;
+                font-size: 28px;
+                word-wrap: break-word;
+                width: 300px;
             }
         }
     }
@@ -122,13 +124,17 @@
     border-radius: 10px;
     position: relative;
     color: var(--text-color);
-    height: 320px;
+    height: 300px;
 
     .title {
         font-size: 20px;
+        height: 33px;
+        padding: 10px;
 
         h3 {
-            margin: 10px;
+            word-wrap: break-word;
+
+            margin: 0px;
         }
 
     }
@@ -139,12 +145,15 @@
     }
 
     .titleFull {
+
         height: 250px;
         display: flex;
         align-items: center;
         justify-content: center;
 
         h3 {
+            word-wrap: break-word;
+            width: 200px;
             font-size: 34px;
             margin: 0;
         }
@@ -152,12 +161,19 @@
 
 
     .info {
+
         flex-shrink: 1;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 10px 20px;
         opacity: 0.7;
+
+        span {
+            gap: 10px;
+            display: flex;
+            align-items: center;
+        }
 
     }
 

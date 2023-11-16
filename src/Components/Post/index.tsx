@@ -23,8 +23,8 @@ const Post: React.FC<TPost> = ({ isLoading, post }) => {
 
     const formatTitle = (title: string) => {
         const string = title.split('');
-        if (string.length > 70) {
-            return string.splice(70).join('') + '...'
+        if (string.length > 30) {
+            return string.splice(30).join('') + '...'
         }
         return title
     }
