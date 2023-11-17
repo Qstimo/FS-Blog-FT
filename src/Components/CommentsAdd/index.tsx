@@ -9,7 +9,7 @@ import AvatarUrl from '../AvatarUrl'
 import { useSelector } from 'react-redux'
 import { selectIsAuth, selectUser } from '../../Slice/slices/auth/authSlice'
 import { TFetchComments } from '../../Slice/slices/post/types'
-import { SendSvg } from '../../Img/svg'
+import { CatHangingSvg, SendSvg } from '../../Img/svg'
 type TComment = {
     id: string | undefined,
     setComments: (data: any) => void,
@@ -23,6 +23,7 @@ const CommentAdd: React.FC<TComment> = ({ id, setComments, comments, setSend, se
     const text = useInput('', { isEmpty: true, minLength: 3, })
     const isEdit = false;
     const navigate = useNavigate();
+    const [openArea, setOpenArea] = React.useState(false);
 
     const handleSubmitComment = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -47,23 +48,30 @@ const CommentAdd: React.FC<TComment> = ({ id, setComments, comments, setSend, se
     return (
 
         <div className={s.comment}>
-
             <form onSubmit={handleSubmitComment}>
-                <div className={s.textContainer} >
+                <div
+                    onFocus={() => setOpenArea(true)}
+                    onBlur={() => setOpenArea(false)}
+                    className={s.textContainer} >
                     <textarea
+                        style={!openArea ? { height: '30px' } : undefined}
                         className={s.textarea}
                         value={text.value}
                         onChange={e => text.onChange(e)}
                         onBlur={e => text.onBlur(e)}
                         maxLength={180} rows={4} name="text"
                         placeholder='Текст комментария ' >
+
                     </textarea>
                     {text.value.length > 5 && <button><SendSvg /></button>}
+                    <div className={s.catConteiner}>
+                        <div className={s.cat}><CatHangingSvg />
+                        </div>
+                    </div>
                 </div>
+            </form >
 
-            </form>
-
-        </div>
+        </div >
 
 
     )
