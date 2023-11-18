@@ -24,7 +24,7 @@ const Post: React.FC<TPost> = ({ isLoading, post }) => {
     const formatTitle = (title: string) => {
         const string = title.split('');
         if (string.length > 30) {
-            return string.splice(30).join('') + '...'
+            return string.splice(0, 30).join('') + '...'
         }
         return title
     }
@@ -53,10 +53,11 @@ const Post: React.FC<TPost> = ({ isLoading, post }) => {
                                 <h3 >{formatTitle(post.title)}</h3>
                             </div>
                         }
-                        <Tags tags={post.tags} />
+                        <p className={s.text}>{formatTitle(post.text)}</p>
                     </div>
                 </div>
 
+                <Tags tags={post.tags} />
                 <div className={s.info}>
                     <span className={s.viewsCount}><ViewsSvg /> {post.viewsCount}</span>
                     <span className={s.comments}><CommentsSvg /> {post.comments.length > 0 && post.comments.length}</span>

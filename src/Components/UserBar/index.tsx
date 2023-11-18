@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { logout, selectIsAuth, selectUser } from '../../Slice/slices/auth/authSlice';
 import { useAppDispatch } from '../../Slice/store';
 import AvatarUrl from '../AvatarUrl';
-import { ExitSvg } from '../../Img/svg';
+import { ExitSvg, WriteSvg } from '../../Img/svg';
 
 const UserBar: React.FC = () => {
   const navigate = useNavigate();
@@ -53,13 +53,12 @@ const UserBar: React.FC = () => {
       {auth ? (
         <>
           <Link to="/created">
-            {' '}
-            <button className={s.btn}>Создать пост</button>
+            <button className={s.btn}><span>Создать пост <span><WriteSvg /></span> </span> </button>
           </Link>
           <AvatarUrl onClick={openUserBarFunc} avatarUrl={data?.avatarUrl} />
           <TransitionGroup>
             {open && (
-              <CSSTransition in={open} classNames="user-bar" timeout={300}>
+              <CSSTransition in={open} classNames="user-bar" timeout={600}>
                 <div ref={popupRef} className={s.userBar}>
                   <div onClick={closeUserBar} className={s.closeSvg}>
                     <svg
@@ -111,7 +110,6 @@ const UserBar: React.FC = () => {
                   <hr />
                   <ul>
                     <Link to={'./user'}><li>Странница профиля</li></Link>
-                    <li>Мои посты</li>
                     <li onClick={logoutUser}><span>Выйти <ExitSvg fill={'var(--text-color-brown)'} /></span></li>
                   </ul>
                 </div>

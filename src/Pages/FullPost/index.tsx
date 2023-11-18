@@ -4,7 +4,7 @@ import imgBg from '../../Img/pc_banner.jpg'
 import Comment from '../../Components/Comments'
 import CommentAdd from '../../Components/CommentsAdd'
 import Avatar from '../../Img/avatar'
-import { useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import axios from '../../Utils/axios'
 import { TFetchComments, TFetchPosts } from '../../Slice/slices/post/types'
 import { dataFormat } from '../../Utils'
@@ -18,6 +18,7 @@ import FullPostSkeleton from './skelton'
 import Slider from '../../Components/Slider'
 
 const FullPost: React.FC = () => {
+    const navigate = useNavigate()
     const { id } = useParams();
     const [data, setData] = React.useState<TFetchPosts>();
     const [comments, setComments] = React.useState<TFetchComments[]>();
@@ -30,7 +31,10 @@ const FullPost: React.FC = () => {
         axios.get(`/posts/${id}`).then((response) => {
             setData(response.data);
             setIsLoading(false)
-        }).catch((error) => alert(error));
+        }).catch((error) => {
+            console.log(error)
+            navigate('/*');
+        });
     }, [id])
 
     React.useEffect(() => {
@@ -38,10 +42,9 @@ const FullPost: React.FC = () => {
         axios.get(`/posts/${id}/comments`).then((response) => {
             setComments(response.data);
             setIsLoadingComment(false)
-        }).catch((error) => alert(error));
+        }).catch((error) => console.log(error));
 
     }, [send, id])
-
     if (isLoading || !data) { return <FullPostSkeleton /> }
 
     return (

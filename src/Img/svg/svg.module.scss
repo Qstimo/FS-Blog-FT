@@ -50,6 +50,15 @@
     }
 }
 
+.writeSvg {
+    svg {
+        width: 25px;
+        height: 25px;
+        stroke: var(--text-color-brown);
+
+    }
+}
+
 .SendSvg {
 
     opacity: 0.7;
@@ -58,7 +67,7 @@
 
     &:hover {
         opacity: 1;
-
+        font-weight: 700;
     }
 
 

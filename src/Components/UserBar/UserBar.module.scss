@@ -70,17 +70,23 @@
         margin-right: 15px;
         overflow: hidden;
         position: relative;
-        background: var(--color-btn);
-        padding: 10px 15px;
+        background: transparent;
+        border: 1px solid var(--text-color);
+        padding: 5px 10px;
         box-sizing: border-box;
         cursor: pointer;
-        border: none;
         border-radius: 10px;
         min-width: 100px;
         font-size: 16px;
         font-weight: 300px;
         text-shadow: -1px -1px 1px rgba(255, 255, 255, .1), 1px 1px 1px rgba(0, 0, 0, .5);
         color: var(--text-color-brown);
+        transition: all 1s ease-in-out;
+
+        span {
+            display: flex;
+            align-items: center;
+        }
 
         @keyframes slideme {
             0% {

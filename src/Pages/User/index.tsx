@@ -22,7 +22,7 @@ const UserPage: React.FC = () => {
     data && axios
       .get(`/posts/user/${data?._id}`)
       .then((response) => setPosts(response.data))
-      .catch((error) => alert(error));
+      .catch((error) => console.log(error));
   }, [data])
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ const UserPage: React.FC = () => {
         <h3>Мои посты:</h3>
         <hr />
         <div className={s.postsCard}>
-          {!data && <h4>Постов не найдено</h4>}
+          {!posts && <h4>Посты не найдены (</h4>}
           {isLoading ? [...new Array(6)].map((e, i) => < Post key={i} isLoading={true} />) : posts?.map(item => < Post post={item} key={item._id} />)}
 
         </div>

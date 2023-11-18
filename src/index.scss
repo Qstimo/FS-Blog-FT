@@ -1,6 +1,6 @@
 body {
   margin: 0;
-
+  font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -24,9 +24,9 @@ a {
 
 // src/index.scss
 :root[data-theme="light"] {
-  --background-color-content: rgb(233, 233, 233);
-  --background-color: white;
-  --background-color-App: rgb(237, 237, 237);
+  --background-color-content: #ebebf9;
+  --background-color: #F3F3FB;
+  --background-color-App: #F8F9FB;
   --text-color: #1C1E21;
   --text-color-brown: #2F2222;
   --color-btn: linear-gradient(45deg, rgb(242, 209, 255), rgb(86, 181, 184));
@@ -34,7 +34,7 @@ a {
 }
 
 :root[data-theme="dark"] {
-  --background-color-content: #414141a1;
+  --background-color-content: linear-gradient(45deg, rgb(146, 116, 152), rgb(0, 24, 24));
   --background-color: linear-gradient(45deg, rgb(197, 154, 207), rgb(0, 24, 24));
   --background-color-App: #181818;
   --text-color: #f5f6f7;
