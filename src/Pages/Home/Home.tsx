@@ -15,7 +15,7 @@ import Slider from '../../Components/Slider';
 const Home: React.FC = () => {
   const { posts, tags, } = useSelector(selectPostData);
   const isLoadingPosts = posts.status === Status.LOADING || posts.status === Status.ERROR;
-  const isLoadingTags = tags.status === Status.LOADING || tags.status === Status.ERROR;
+  const isLoadingTags = tags.status === Status.LOADING;
   const dispatch = useAppDispatch()
   const [select, setSelect] = React.useState({ name: 'Новые', sortProperty: 'news' });
   const search = useSelector(selectSearch)
@@ -46,13 +46,15 @@ const Home: React.FC = () => {
         onClick={() => selectItem(obj)}
       >{obj.name}</span>)}
       </div>
-      {isLoadingPosts ? [...new Array(6)].map((e, i) => < Post key={i} isLoading={true} />) : posts.items.map(item => < Post post={item} key={item._id} />)}
+      {isLoadingPosts ? [...new Array(6)].map((e, i) => < Post key={i} isLoading={true} />) : posts.items?.map(item => < Post post={item} key={item._id} />)}
     </div>
     <div className={s.tagsContainer}>
       <h3>Популярные теги:</h3>
       <hr />
       <div className={s.tags}>
-        {isLoadingTags ? <Tags isLoading={isLoadingTags} /> : <Tags tags={tags.items} />}
+        {tags.status === Status.ERROR
+          ? isLoadingTags ? <Tags isLoading={isLoadingTags} /> : <Tags tags={tags.items} />
+          : <div>Теги не найдены</div>}
       </div>
 
       <div className={s.sideBar}>

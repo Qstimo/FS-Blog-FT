@@ -18,7 +18,7 @@ const Tags: React.FC<PTags> = ({ tags, isLoading }) => {
     }
 
     if (isLoading) return <div className={s.tags}> {[...new Array(5)].map((e, i) => <TagSkeleton key={i} />)}</div >
-    if (!tagsArray) return <div ></div>
+    if (tagsArray === undefined || tagsArray?.length < 0) return <div ></div>
     return (
         <div className={s.tags}> {tagsArray.map((tag: string) => <span key={tag} onClick={() => handleTagsClick(tag)} className={s.tag}>{'#' + tag}</span>)} </div>
 
