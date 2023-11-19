@@ -14,8 +14,8 @@ import Slider from '../../Components/Slider';
 
 const Home: React.FC = () => {
   const { posts, tags, } = useSelector(selectPostData);
-  const isLoadingPosts = posts.status === 'loading';
-  const isLoadingTags = tags.status === Status.LOADING;
+  const isLoadingPosts = posts.status === Status.LOADING || posts.status === Status.ERROR;
+  const isLoadingTags = tags.status === Status.LOADING || tags.status === Status.ERROR;
   const dispatch = useAppDispatch()
   const [select, setSelect] = React.useState({ name: 'Новые', sortProperty: 'news' });
   const search = useSelector(selectSearch)
@@ -44,7 +44,8 @@ const Home: React.FC = () => {
         key={obj.name}
         className={obj.sortProperty === select.sortProperty ? s.active : ''}
         onClick={() => selectItem(obj)}
-      >{obj.name}</span>)} </div>
+      >{obj.name}</span>)}
+      </div>
       {isLoadingPosts ? [...new Array(6)].map((e, i) => < Post key={i} isLoading={true} />) : posts.items.map(item => < Post post={item} key={item._id} />)}
     </div>
     <div className={s.tagsContainer}>
