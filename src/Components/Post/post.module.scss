@@ -1,14 +1,17 @@
 .post {
     width: 100%;
-    padding: 10px;
+    padding: 10px 20px;
+    box-sizing: border-box;
     text-align: center;
     border-radius: 10px;
     position: relative;
     color: var(--text-color);
-    background: var(--background-color-content);
+    // background: var(--background-color-App);
 
     .text {
-        text-align: left;
+        text-align: center;
+
+
     }
 
     .titleFull {
@@ -62,6 +65,7 @@
             align-items: center;
             flex: 1 1 200px;
             max-width: 200px;
+            align-self: start;
 
             .avatar {
                 position: relative;
@@ -78,6 +82,7 @@
 
         .title {
             flex: 1;
+            text-align: center;
 
 
 
@@ -87,7 +92,7 @@
                 margin: 0;
                 font-size: 28px;
                 word-wrap: break-word;
-                width: 300px;
+                // max-width: 500px;
             }
         }
     }
@@ -127,7 +132,7 @@
 .microPost {
     padding: 5px;
     margin-bottom: 10px;
-    background: var(--background-color-content);
+    background: var(--background-color-App);
     text-align: center;
     border-radius: 10px;
     position: relative;

@@ -9,9 +9,16 @@ export const fetchAuth = createAsyncThunk('auth/fetchAuth', async (params:TAuth)
     return data
 })
 export const fetchRegister = createAsyncThunk('auth/fetchRegister', async (params:TRegister)=>{
+    
     const {data} = await axios.post('/auth/register', params)
     return data
 })
+export const fetchUpdateUser = createAsyncThunk('auth/fetchUpdateUser', async (params:TRegister)=>{
+    
+    const {data} = await axios.post('/auth/register', params)
+    return data
+})
+
 export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async ()=>{
     const {data} = await axios.get('/auth/me')
     return data

@@ -53,8 +53,9 @@ const Home: React.FC = () => {
       <hr />
       <div className={s.tags}>
         {tags.status === Status.ERROR
-          ? isLoadingTags ? <Tags isLoading={isLoadingTags} /> : <Tags tags={tags.items} />
-          : <div>Теги не найдены</div>}
+          ? <div>Теги не найдены</div>
+          : isLoadingTags ? <Tags isLoading={isLoadingTags} /> : <Tags tags={tags.items} />
+        }
       </div>
 
       <div className={s.sideBar}>

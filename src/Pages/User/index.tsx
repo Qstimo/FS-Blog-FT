@@ -6,9 +6,10 @@ import Avatar from '../../Img/avatar';
 import { ExitSvg, Loading, RemoveSvg, UpdateSvg } from '../../Img/svg';
 import { useAppDispatch } from '../../Slice/store';
 import { useNavigate } from 'react-router-dom';
-import axios from '../../Utils/axios'
+import axios, { API_URL } from '../../Utils/axios'
 import Post from '../../Components/Post';
 import { TFetchPosts, TPosts } from '../../Slice/slices/post/types';
+import Registration from '../../Components/Register';
 
 
 
@@ -45,7 +46,7 @@ const UserPage: React.FC = () => {
         <div className={s.userInfo}>
           <div className={s.avatar}>
             {data ? (
-              <img src={`http://localhost:4444${data?.avatarUrl}`} alt="" className="" />
+              <img src={`${API_URL}${data?.avatarUrl}`} alt="" className="" />
             ) : (
               <Avatar />
             )}
@@ -57,6 +58,7 @@ const UserPage: React.FC = () => {
           <span>Редактировать профиль </span>
           <UpdateSvg id={''} />
         </div>
+        <Registration edit={true} />
         <span onClick={logoutUser} className={s.exit}>
           Выйти <ExitSvg fill={'var(--text-color)'} />
         </span>

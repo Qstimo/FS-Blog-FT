@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from '../../Utils/axios'
+import axios, { API_URL } from '../../Utils/axios'
 
 import s from './register.module.scss'
 import Button from '../../Ui/Button';
@@ -7,12 +7,12 @@ import Avatar from '../../Img/avatar';
 import { useInput, useValidForm } from '../../hooks/validation';
 import ValidationErorrs from '../../Components/VlidationErorrs';
 import { useAppDispatch } from '../../Slice/store';
-import { fetchRegister } from '../../Slice/slices/auth/authSlice';
+import { fetchRegister, fetchUpdateUser } from '../../Slice/slices/auth/authSlice';
 
 
 
 
-const Registration: React.FC = () => {
+const Registration: React.FC<{ edit?: boolean }> = ({ edit }) => {
 
     const name = useInput('', { isEmpty: true, minLength: 3, });
     const surname = useInput('', { isEmpty: true, minLength: 3, });
@@ -56,9 +56,14 @@ const Registration: React.FC = () => {
             password: password.value,
             avatarUrl: avatar
         }
-        const data = await dispatch(fetchRegister(value));
+
+
+        const data = edit
+            ? await dispatch(fetchUpdateUser(value))
+            : await dispatch(fetchRegister(value));
+
         if (!data.payload) {
-            alert('Не удалось авторизоваться')
+            alert('Данные не загрузились')
         }
         else if ('token' in data.payload) {
             window.localStorage.setItem('token', data.payload.token);
@@ -71,7 +76,7 @@ const Registration: React.FC = () => {
             <label htmlFor="">
                 <div onClick={() => avatarRef.current?.click()} className={s.avatarLoading}>
                     {Boolean(avatar) ? (
-                        <><button>delete</button><img src={`http://localhost:4444${avatar}`} alt="uploading img" /></>
+                        <><button>delete</button><img src={`${API_URL}${avatar}`} alt="uploading img" /></>
                     ) : <Avatar />}
 
                 </div>
@@ -93,7 +98,11 @@ const Registration: React.FC = () => {
                 <ValidationErorrs array={password.stringErorr} />
                 <input value={password.value} onBlur={e => password.onBlur(e)} onChange={e => password.onChange(e)} type="password" required placeholder='******' />
             </label>
-            <Button disabled={!valid} children='Регистрация' />
+            {
+                edit
+                    ? <Button disabled={!valid} children='Регистрация' />
+                    : <Button children='Изменить данные' />
+            }
         </form></div>
     )
 }
