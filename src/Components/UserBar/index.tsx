@@ -102,11 +102,11 @@ const UserBar: React.FC = () => {
                       </g>
                     </svg>
                   </div>
-                  <span className={s.user}>
+                  <div className={s.user}>
                     {' '}
                     <AvatarUrl avatarUrl={data?.avatarUrl} />
-                    {data?.fullName}
-                  </span>
+                    <span>{data?.fullName}</span>
+                  </div>
                   <hr />
                   <ul>
                     <Link to={'./user'}><li>Странница профиля</li></Link>

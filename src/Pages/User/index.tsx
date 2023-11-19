@@ -17,6 +17,7 @@ import Registration from '../../Components/Register';
 const UserPage: React.FC = () => {
   const data = useSelector(selectUser)
   const [posts, setPosts] = React.useState<TFetchPosts[]>();
+  const [modalOpen, setModalOpen] = React.useState(false);
   const status = useSelector(selectStatusUser);
   const isLoading = status === 'loading'
   React.useEffect(() => {
@@ -53,12 +54,15 @@ const UserPage: React.FC = () => {
           </div>
           <p className={s.userName}>{data?.fullName}</p>
         </div>
-        <div className={s.update}>
+        <div onClick={()=> setModalOpen(true)} className={s.update}>
           {' '}
-          <span>Редактировать профиль </span>
+          <span >Редактировать профиль </span>
           <UpdateSvg id={''} />
         </div>
-        <Registration edit={true} />
+       {modalOpen && <div className={s.modal__container}> 
+       <div className={s.modal__box}><Registration edit={true} />
+       </div>
+       </div>}
         <span onClick={logoutUser} className={s.exit}>
           Выйти <ExitSvg fill={'var(--text-color)'} />
         </span>

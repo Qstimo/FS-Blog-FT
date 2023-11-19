@@ -15,7 +15,7 @@ export const fetchRegister = createAsyncThunk('auth/fetchRegister', async (param
 })
 export const fetchUpdateUser = createAsyncThunk('auth/fetchUpdateUser', async (params:TRegister)=>{
     
-    const {data} = await axios.post('/auth/register', params)
+    const {data} = await axios.patch('/auth/login', params)
     return data
 })
 

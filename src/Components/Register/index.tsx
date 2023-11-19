@@ -83,25 +83,25 @@ const Registration: React.FC<{ edit?: boolean }> = ({ edit }) => {
                 <input ref={avatarRef} onChange={handleCangeFile} type="file" hidden />
             </label>
             <label htmlFor="">
-                <ValidationErorrs array={name.stringErorr} />
-                <input value={name.value} onBlur={e => name.onBlur(e)} onChange={e => name.onChange(e)} type="text" required placeholder='Имя' />
+                {<ValidationErorrs array={name.stringErorr} />}
+                <input value={name.value} onBlur={e => name.onBlur(e)} onChange={e => name.onChange(e)} type="text" required={!edit} placeholder='Имя' />
             </label>
             <label htmlFor="">
                 <ValidationErorrs array={surname.stringErorr} />
-                <input value={surname.value} onBlur={e => surname.onBlur(e)} onChange={e => surname.onChange(e)} type="text" required placeholder='Фамилия' />
+                <input value={surname.value} onBlur={e => surname.onBlur(e)} onChange={e => surname.onChange(e)} type="text" required={!edit} placeholder='Фамилия' />
             </label>
             <label htmlFor="email">
                 <ValidationErorrs array={email.stringErorr} />
-                <input name='email' value={email.value} onBlur={e => email.onBlur(e)} onChange={e => email.onChange(e)} type="email" required placeholder='Почта' />
+                <input name='email' value={email.value} onBlur={e => email.onBlur(e)} onChange={e => email.onChange(e)} type="email" required={!edit} placeholder='Почта' />
             </label>
             <label htmlFor="">
                 <ValidationErorrs array={password.stringErorr} />
-                <input value={password.value} onBlur={e => password.onBlur(e)} onChange={e => password.onChange(e)} type="password" required placeholder='******' />
+                <input value={password.value} onBlur={e => password.onBlur(e)} onChange={e => password.onChange(e)} type="password" required={!edit} placeholder='******' />
             </label>
             {
                 edit
-                    ? <Button disabled={!valid} children='Регистрация' />
-                    : <Button children='Изменить данные' />
+                ? <Button children='Изменить данные' />
+                : <Button disabled={!valid} children='Регистрация' />
             }
         </form></div>
     )
