@@ -4,7 +4,7 @@ import s from './PostAdd.module.scss'
 import { useInput } from '../../hooks/validation'
 import Button from '../../Ui/Button'
 import { RemoveSvg } from '../../Img/svg'
-import axios from '../../Utils/axios'
+import axios, { API_URL } from '../../Utils/axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import ValidationErorrs from '../../Components/VlidationErorrs'
 
@@ -77,7 +77,7 @@ const PostAdd: React.FC = () => {
         <div className={s.root}>
             <div className={s.imgLoading} >
                 {Boolean(img) ? (
-                    <><img className={s.image} src={`http://localhost:4444${img}`} alt="uploading img" />
+                    <><img className={s.image} src={`${API_URL}:4444${img}`} alt="uploading img" />
                         <button className={s.deleteImg} onClick={() => setImg('')} ><RemoveSvg /></button></>
                 ) : <Button onClick={() => imgRef.current?.click()} children='Загрузить превью' />}
 
