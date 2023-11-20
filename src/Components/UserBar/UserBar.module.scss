@@ -149,24 +149,7 @@
         top: -10px;
         right: -5%;
 
-        .closeSvg {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
 
-            svg {
-                stroke: var(--text-color);
-                width: 25px;
-                height: 25px;
-
-                &:hover {
-                    transition: transform 0.4s ease-in-out;
-                    transform: rotate(360deg);
-                    stroke: red;
-                }
-            }
-        }
 
         .user {
             font-size: 20px;

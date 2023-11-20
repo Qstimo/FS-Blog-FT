@@ -1,15 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { logout, selectStatusUser, selectUser } from '../../Slice/slices/auth/authSlice';
+import { fetchAuthMe, logout, selectStatusUser, selectUser } from '../../Slice/slices/auth/authSlice';
 import s from './user.module.scss';
 import Avatar from '../../Img/avatar';
-import { ExitSvg, Loading, RemoveSvg, UpdateSvg } from '../../Img/svg';
+import { CloseSvg, ExitSvg, Loading, RemoveSvg, UpdateSvg } from '../../Img/svg';
 import { useAppDispatch } from '../../Slice/store';
 import { useNavigate } from 'react-router-dom';
 import axios, { API_URL } from '../../Utils/axios'
 import Post from '../../Components/Post';
 import { TFetchPosts, TPosts } from '../../Slice/slices/post/types';
 import Registration from '../../Components/Register';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 
 
@@ -18,6 +19,7 @@ const UserPage: React.FC = () => {
   const data = useSelector(selectUser)
   const [posts, setPosts] = React.useState<TFetchPosts[]>();
   const [modalOpen, setModalOpen] = React.useState(false);
+  const [switchUser, setSwitchUser] = React.useState(false);
   const status = useSelector(selectStatusUser);
   const isLoading = status === 'loading'
   React.useEffect(() => {
@@ -25,7 +27,12 @@ const UserPage: React.FC = () => {
       .get(`/posts/user/${data?._id}`)
       .then((response) => setPosts(response.data))
       .catch((error) => console.log(error));
-  }, [data])
+  }, [data]);
+  React.useEffect(() => {
+    dispatch(fetchAuthMe())
+    setModalOpen(false)
+  }, [switchUser]);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const logoutUser = () => {
@@ -54,15 +61,23 @@ const UserPage: React.FC = () => {
           </div>
           <p className={s.userName}>{data?.fullName}</p>
         </div>
-        <div onClick={()=> setModalOpen(true)} className={s.update}>
+        <div onClick={() => setModalOpen(true)} className={s.update}>
           {' '}
           <span >Редактировать профиль </span>
           <UpdateSvg id={''} />
         </div>
-       {modalOpen && <div className={s.modal__container}> 
-       <div className={s.modal__box}><Registration edit={true} />
-       </div>
-       </div>}
+        <TransitionGroup>
+          {modalOpen &&
+            <CSSTransition classNames="user-update" timeout={300}>
+              <div className={s.modal__container}>
+                <div className={s.modal__box}>
+                  <CloseSvg onClick={() => setModalOpen(false)} />
+                  <Registration setSwitchUser={setSwitchUser} switchUser={switchUser} data={data} edit={true} />
+                </div>
+              </div>
+            </CSSTransition>
+          }
+        </TransitionGroup>
         <span onClick={logoutUser} className={s.exit}>
           Выйти <ExitSvg fill={'var(--text-color)'} />
         </span>

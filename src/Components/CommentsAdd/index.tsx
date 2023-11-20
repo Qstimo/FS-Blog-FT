@@ -22,7 +22,6 @@ const CommentAdd: React.FC<TComment> = ({ id, setComments, comments, setSend, se
     const data = useSelector(selectUser)
     const text = useInput('', { isEmpty: true, minLength: 3, })
     const isEdit = false;
-    const navigate = useNavigate();
     const [openArea, setOpenArea] = React.useState(false);
 
     const handleSubmitComment = async (e: React.ChangeEvent<HTMLFormElement>) => {

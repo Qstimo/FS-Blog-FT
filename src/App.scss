@@ -84,9 +84,6 @@ a {
 .user-bar-enter-active {
   transition: all 500ms ease-in-out;
   transform: translateY(0px);
-
-
-
 }
 
 .user-bar-exit {
@@ -98,7 +95,37 @@ a {
 }
 
 .user-bar-exit-active {
-  transform: translateY(-100px);
+  // transform: scale(0.2);
+}
+
+.user-update-enter {
+  opacity: 0.2;
+  // transition: all 100ms ease-in-out;
+  transform: rotate(-30deg) translateX(-100%) scale(0.2);
+  background: transparent !important;
+
+}
+
+.user-update-enter-active {
+  transition: all 200ms ease-in-out;
+  // transform: scale(0.4);
+  opacity: 0.2;
+  background: transparent !important;
+
+
+}
+
+.user-update-exit {
+  opacity: 0.2;
   transition: all 1s ease-in-out;
+  background: transparent !important;
+
+}
+
+.user-update-exit-active {
+  opacity: 0.2;
+  transition: all 1s ease-in-out;
+  transform: translateY(100%);
+  background: transparent !important;
 
 }

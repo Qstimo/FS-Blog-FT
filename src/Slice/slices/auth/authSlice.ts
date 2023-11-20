@@ -13,7 +13,10 @@ export const fetchRegister = createAsyncThunk('auth/fetchRegister', async (param
     const {data} = await axios.post('/auth/register', params)
     return data
 })
-export const fetchUpdateUser = createAsyncThunk('auth/fetchUpdateUser', async (params:TRegister)=>{
+export const fetchUpdateUser = createAsyncThunk('auth/fetchUpdateUser', async (params:{
+    fullName: string;
+    avatarUrl: string;
+})=>{
     
     const {data} = await axios.patch('/auth/login', params)
     return data
@@ -38,7 +41,8 @@ initialState,
 reducers: {
     logout:(state)=>{
         state.data = null;
-    }
+    },
+
 },
 extraReducers:(builder) => {
     builder.addCase(fetchAuth.pending,(state)=>{
