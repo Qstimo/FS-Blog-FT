@@ -28,6 +28,7 @@ const UserPage: React.FC = () => {
       .then((response) => setPosts(response.data))
       .catch((error) => console.log(error));
   }, [data]);
+
   React.useEffect(() => {
     dispatch(fetchAuthMe())
     setModalOpen(false)

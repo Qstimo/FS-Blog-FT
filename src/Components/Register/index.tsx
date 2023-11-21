@@ -96,7 +96,7 @@ const Registration: React.FC<{ edit?: boolean, data?: TUserData | null, setSwitc
                 <label htmlFor="">
                     <div onClick={() => avatarRef.current?.click()} className={s.avatarLoading}>
                         {Boolean(avatar) ? (
-                            <><button>delete</button><img src={`${API_URL}${avatar}`} alt="uploading img" /></>
+                            <><button className={s.deleteImg}></button><img src={`${API_URL}${avatar}`} alt="uploading img" /></>
                         ) : <Avatar />}
 
                     </div>
