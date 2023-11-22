@@ -16,6 +16,7 @@ import { selectUser } from '../../Slice/slices/auth/authSlice'
 import Tags from '../../Components/Tags'
 import FullPostSkeleton from './skelton'
 import Slider from '../../Components/Slider'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const FullPost: React.FC = () => {
     const navigate = useNavigate()
@@ -47,6 +48,13 @@ const FullPost: React.FC = () => {
     }, [send, id])
     if (isLoading || !data) { return <FullPostSkeleton /> }
 
+    const removeComment = (id: string) => {
+        if (window.confirm('Вы точно хотите удалить этот комментарий?')) {
+            axios.delete(`/posts/comments/${id}`)
+                .then((response) => { setSend(!send) })
+                .catch((error) => { console.log(error); })
+        }
+    }
     return (
         <div className={s.root}>
             <div className={s.post}>
@@ -75,7 +83,13 @@ const FullPost: React.FC = () => {
             <div className={s.dopContent}>
                 <div className={s.comments}>
                     <CommentAdd setSend={setSend} send={send} comments={comments} setComments={setComments} id={id} />
-                    {comments && comments.map(item => <Comment comment={item} key={item._id} />)}
+                    <TransitionGroup>
+                        {comments && comments.map(item =>
+                            <CSSTransition key={item._id} classNames='user-bar' timeout={500}>
+                                <Comment onClick={removeComment} comment={item} />
+                            </CSSTransition>
+                        )}
+                    </TransitionGroup>
                     {isLoadingComment && <Loading />}
                 </div>
                 <Slider />
