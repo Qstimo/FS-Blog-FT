@@ -1,9 +1,10 @@
 .formRegister {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
     align-items: center;
+    transition: all 1s ease-in-out;
 
     .deleteImg {
         position: absolute;

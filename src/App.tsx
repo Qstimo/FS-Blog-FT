@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import { fetchAuthMe, selectIsAuth } from './Slice/slices/auth/authSlice';
 import UserPage from './Pages/User';
 import NotFound from './Pages/NotFound';
+import FirstPage from './Pages/FirstPage';
 function App() {
   const dispatch = useAppDispatch();
   const isAuth = useSelector(selectIsAuth);
@@ -21,10 +22,12 @@ function App() {
 
   return (
     <Routes>
+
+
       <Route path='/' element={<MainLayout />} >
         <Route path='' element={<Home />}></Route>
+        <Route path='/welcome' element={<FirstPage />} />
         <Route path='posts/:id' element={<FullPost />}></Route>
-        <Route path='/auth' element={<Register />}></Route>
         <Route path='/created' element={<PostAdd />}></Route>
         <Route path='/update/:id' element={<PostAdd />}></Route>
         <Route path='/user' element={<UserPage />}></Route>
