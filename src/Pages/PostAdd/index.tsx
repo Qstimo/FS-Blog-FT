@@ -85,17 +85,12 @@ const PostAdd: React.FC = () => {
             </div>
             <form onSubmit={handleSubmitPost} className={s.form}>
                 <label htmlFor="">
-                    <ValidationErorrs array={title.stringErorr} />
                     <input className={s.title} value={title.value} onBlur={e => title.onBlur(e)} onChange={e => title.onChange(e)} type="text" placeholder='Заголовок статьи' />
                 </label>
                 <label htmlFor="">
-                    <ValidationErorrs array={tags.stringErorr} />
                     <input value={tags.value} onBlur={e => tags.onBlur(e)} onChange={e => tags.onChange(e)} type="text" placeholder='#тэги' />
                 </label>
-                <ValidationErorrs array={text.stringErorr} />
                 <textarea onBlur={e => text.onBlur(e)} onChange={e => text.onChange(e)} value={text.value} placeholder='Текст статьи' className={s.text}></textarea>
-                {/* <EditorText htmlText={value} onChangeHTMLText={setValue} /> */}
-
                 <Button children='Отправить' />
             </form>
 

@@ -40,10 +40,10 @@ const Header: React.FC = () => {
           <Theme />
         </li>
         <li>
-          <Link to={'/'}>Главная</Link>
+          <Link to={'/posts'}>Главная</Link>
         </li>
 
-        {pathname === '/' &&
+        {pathname === '/posts' &&
           <li className={s.searchContainer} >
             <span onClick={() => selectSearchOn(!searchOn)}>  Поиск</span>
             {searchOn && <input value={value} onChange={changeSearch} className={s.search} type="text" />}

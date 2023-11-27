@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
           <Link to={'/'}>О нас</Link>
         </li>
         <li>
-          <Link to={'/'}>Лучшие посты</Link>
+          <Link to={'/posts'}>Лучшие посты</Link>
         </li>
 
       </ul>

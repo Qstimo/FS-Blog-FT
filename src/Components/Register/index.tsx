@@ -50,16 +50,6 @@ const Registration: React.FC<{ edit?: boolean, data?: TUserData | null, setSwitc
         }
 
 
-        const onSubmit1 = () => {
-            const data = {
-                fullName: name.value + ' ' + surname.value,
-                email: email.value,
-                password: password.value,
-                avatarUrl: avatar
-            }
-            console.log(data)
-
-        }
         const onSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
             e.preventDefault();
             const value = {

@@ -47,7 +47,7 @@ const Auth: React.FC = () => {
                 <ValidationErorrs array={email.stringErorr} />
                 <input name='email' value={email.value} onBlur={e => email.onBlur(e)} onChange={e => email.onChange(e)} type="email" required placeholder='Почта' />
             </label>
-            <label htmlFor="">
+            <label htmlFor="password">
                 <ValidationErorrs array={password.stringErorr} />
                 <input value={password.value} onBlur={e => password.onBlur(e)} onChange={e => password.onChange(e)} type="password" required placeholder='******' />
             </label>

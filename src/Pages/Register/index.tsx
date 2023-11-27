@@ -19,7 +19,7 @@ const Register: React.FC = () => {
     const [auth, setAuth] = React.useState(false);
     const isAuth = useSelector(selectIsAuth);
     if (isAuth) {
-        return <Navigate to='/' />
+        return <Navigate to='/posts' />
     }
     return (<>
         <div className={s.root}>
@@ -32,11 +32,12 @@ const Register: React.FC = () => {
                     ? <Registration />
                     : <Auth />}
             </div>
-            <Link className={s.btnHome} to='/' >
+            <Link className={s.btnHome} to='/posts' >
                 <Button>Продолжить без регистрации</Button>
             </Link>
         </div>
-        <div className={s.bk}>        <ParticlesContainer />
+        <div className={s.bk}>
+            <ParticlesContainer />
         </div>
     </>)
 

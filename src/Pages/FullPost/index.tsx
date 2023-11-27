@@ -49,11 +49,10 @@ const FullPost: React.FC = () => {
     if (isLoading || !data) { return <FullPostSkeleton /> }
 
     const removeComment = (id: string) => {
-        if (window.confirm('Вы точно хотите удалить этот комментарий?')) {
-            axios.delete(`/posts/comments/${id}`)
-                .then((response) => { setSend(!send) })
-                .catch((error) => { console.log(error); })
-        }
+        axios.delete(`/posts/comments/${id}`)
+            .then((response) => { setSend(!send) })
+            .catch((error) => { console.log(error); })
+
     }
     return (
         <div className={s.root}>
