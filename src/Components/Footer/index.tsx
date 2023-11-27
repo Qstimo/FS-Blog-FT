@@ -7,10 +7,10 @@ const Footer: React.FC = () => {
     <div className={s.footer}>
       <ul className={s.navbar}>
         <li>
-          <Link to={'/'}>О нас</Link>
+          <Link to={'/welcome'}>О нас</Link>
         </li>
         <li>
-          <Link to={'/posts'}>Лучшие посты</Link>
+          <Link to={'/'}>Лучшие посты</Link>
         </li>
 
       </ul>

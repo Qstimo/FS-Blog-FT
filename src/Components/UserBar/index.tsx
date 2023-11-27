@@ -68,7 +68,7 @@ const UserBar: React.FC = () => {
                   </div>
                   <hr />
                   <ul>
-                    <Link to={'./user'}><li>Странница профиля</li></Link>
+                    <Link to={'./user'} onClick={() => setOpen(false)}><li>Странница профиля</li></Link>
                     <li onClick={logoutUser}><span>Выйти <ExitSvg fill={'var(--text-color-brown)'} /></span></li>
                   </ul>
                 </div>

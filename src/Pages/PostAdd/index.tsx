@@ -1,5 +1,5 @@
 import React from 'react'
-
+import cn from 'classnames'
 import s from './PostAdd.module.scss'
 import { useInput } from '../../hooks/validation'
 import Button from '../../Ui/Button'
@@ -75,11 +75,13 @@ const PostAdd: React.FC = () => {
     return (
 
         <div className={s.root}>
-            <div className={s.imgLoading} >
-                {Boolean(img) ? (
-                    <><img className={s.image} src={`${API_URL}:4444${img}`} alt="uploading img" />
+            <div className={cn(s.imgLoading, Boolean(img) ? s.imgLoadingActive : '')}   >
+                {Boolean(img)
+                    ? (<><img className={s.image} src={`${API_URL}${img}`} alt="uploading img" />
                         <button className={s.deleteImg} onClick={() => setImg('')} ><RemoveSvg /></button></>
-                ) : <Button onClick={() => imgRef.current?.click()} children='Загрузить превью' />}
+                    ) : <div className={s.btnSub}>
+                        <Button onClick={() => imgRef.current?.click()} children='Загрузить превью' />
+                    </div>}
 
                 <input ref={imgRef} onChange={handleCangeFile} type="file" hidden />
             </div>
@@ -91,10 +93,12 @@ const PostAdd: React.FC = () => {
                     <input value={tags.value} onBlur={e => tags.onBlur(e)} onChange={e => tags.onChange(e)} type="text" placeholder='#тэги' />
                 </label>
                 <textarea onBlur={e => text.onBlur(e)} onChange={e => text.onChange(e)} value={text.value} placeholder='Текст статьи' className={s.text}></textarea>
-                <Button children='Отправить' />
+                <div className={s.btnSub}>
+                    <Button children='Отправить' />
+                </div>
             </form>
 
-        </div>
+        </div >
 
     )
 }

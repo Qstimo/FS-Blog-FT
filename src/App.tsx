@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import Home from './Pages/Home/Home';
 
 import MainLayout from './Components/Layouts/MainLayout';
@@ -16,8 +16,14 @@ import FirstPage from './Pages/FirstPage';
 function App() {
   const dispatch = useAppDispatch();
   const isAuth = useSelector(selectIsAuth);
+  const navigate = useNavigate()
   React.useEffect(() => {
     dispatch(fetchAuthMe());
+    const firstVisit = Boolean(window.localStorage.getItem('firstVisit'));
+    if (!isAuth && !firstVisit) {
+      navigate('/welcome');
+      window.localStorage.setItem('firstVisit', 'visit');
+    }
   }, []);
 
 
@@ -25,7 +31,7 @@ function App() {
     <Routes>
       <Route path='/welcome' element={<FirstPage />} />
       <Route path='/' element={<MainLayout />} >
-        <Route path='/posts' element={<Home />}></Route>
+        <Route path='/' element={<Home />}></Route>
         <Route path='auth' element={<Register />}></Route>
         <Route path='posts/:id' element={<FullPost />}></Route>
         <Route path='/created' element={<PostAdd />}></Route>

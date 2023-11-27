@@ -14,7 +14,7 @@ export const RemoveSvg: React.FC<TSvgBtn> = ({ id, isPost = true }) => {
     const hanldleRemove = (id: string) => {
         if (window.confirm('Вы точно хотите удалить этот пост?')) {
             dispatch(fetchPostRemove(id));
-            navigate('/posts')
+            navigate('/')
         }
     }
     const hanldleRemoveComment = (id: string) => {
