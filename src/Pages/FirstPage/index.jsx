@@ -93,6 +93,19 @@ const FirstPage = () => {
       });
     });
 
+    function autoScroll() {
+      setTimeout(() => {
+        gotoSection(currentIndex + 1, 1);
+        if (currentIndex <= 2) {
+          autoScroll();
+        }
+        console.log(currentIndex);
+      }, 3000);
+    }
+
+    if (currentIndex <= 2) {
+    }
+    autoScroll();
     gotoSection(0, 1);
   }, []);
 
