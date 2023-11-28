@@ -24,7 +24,7 @@ const MicroPost: React.FC<TPost> = ({ isLoading, post }) => {
     const formatTitle = (title: string) => {
         const string = title.split('');
         if (string.length > 13) {
-            return string.splice(0, 13).join('') + '...'
+            return string.splice(0, 25).join('') + '...'
         }
         return title
     }

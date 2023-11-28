@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { searchPosts, selectSearch } from '../../Slice/slices/filter/filterSlice';
 import debounce from 'lodash.debounce'
 import { useAppDispatch } from '../../Slice/store';
+import { HomeSvg, SearchSvg } from '../../Img/svg';
 
 const Header: React.FC = () => {
   const [searchOn, selectSearchOn] = React.useState(false)
@@ -40,12 +41,12 @@ const Header: React.FC = () => {
           <Theme />
         </li>
         <li>
-          <Link to={'/'}>Главная</Link>
+          <Link to={'/'}>  <span>Главная</span><span><HomeSvg /></span></Link>
         </li>
 
         {pathname === '/' &&
           <li className={s.searchContainer} >
-            <span onClick={() => selectSearchOn(!searchOn)}>  Поиск</span>
+            <span onClick={() => selectSearchOn(!searchOn)}>   Поиск <span><SearchSvg /></span></span>
             {searchOn && <input value={value} onChange={changeSearch} className={s.search} type="text" />}
           </li>}
       </ul>

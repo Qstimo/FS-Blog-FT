@@ -98,3 +98,41 @@
 
     }
 }
+
+.home,
+.search {
+    width: 30px;
+    height: 30px;
+    opacity: 0.7;
+    z-index: 2;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
+    }
+
+
+    svg {
+        width: 30px;
+        height: 30px;
+
+    }
+}
+
+.search {
+    svg {
+        width: 25px;
+        height: 25px;
+        stroke: var(--text-color);
+        fill: var(--background-color);
+    }
+}
+
+.home {
+    svg {
+        fill: var(--text-color);
+        stroke: var(--text-color);
+
+
+    }
+}

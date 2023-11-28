@@ -7,7 +7,19 @@
     border: 3px solid var(--text-color);
     margin: 0 auto;
     z-index: 2;
-    opacity: 0.93;
+    opacity: 0.91;
+    transition: all 1s ease-in-out;
+
+    @media(max-width:700px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: auto;
+        border-radius: 0;
+        border: none;
+    }
 }
 
 .bk {
@@ -20,6 +32,11 @@
     position: absolute;
     bottom: -50px;
     transform: translate(-50%, 50%);
+
+    @media(max-width:700px) {
+        bottom: 70px;
+
+    }
 }
 
 .formContainer {
@@ -31,6 +48,12 @@
     margin-bottom: 20px;
     transition: all 1s ease-in-out;
 
+    @media(max-width:700px) {
+        width: 170px;
+        margin: 0 auto;
+
+    }
+
     button {
         transition: all 0.2s ease-in-out;
         width: 50%;
@@ -41,8 +64,23 @@
         border: none;
         opacity: 0.5;
 
+        @media(max-width:700px) {
+            position: relative;
+            bottom: -100px;
+            width: 100px;
+            height: 100px;
+            border-radius: 0px 50px 50px 0px;
+
+            overflow: hidden;
+
+        }
+
         &:first-child {
             border-radius: 5px 0px 0px 5px;
+
+            @media(max-width:700px) {
+                border-radius: 50px 0px 0px 50px;
+            }
         }
 
         &:hover {

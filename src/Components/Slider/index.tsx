@@ -19,7 +19,6 @@ const Slider: React.FC = () => {
         dispatch(fetchLastPopulatePosts())
     }, []);
 
-    console.log('22' + latsPopulatePost.items)
     if (latsPopulatePost.items === undefined) return <div className=""></div>
     return (
         <div className={s.root}>

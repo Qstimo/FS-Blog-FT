@@ -50,7 +50,7 @@ const Home: React.FC = () => {
     </div>
     <div className={s.tagsContainer}>
       <h3>Популярные теги:</h3>
-      <hr />
+      <hr style={{ width: "100%" }} />
       <div className={s.tags}>
         {tags.status === Status.ERROR
           ? <div>Теги не найдены</div>

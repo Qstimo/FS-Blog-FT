@@ -6,10 +6,16 @@
     border-radius: 10px;
     position: relative;
     color: var(--text-color);
+
     // background: var(--background-color-App);
+    @media(max-width:700px) {
+        border-top: 1px solid var(--text-color-brown);
+        border-radius: 0px;
+
+    }
 
     .text {
-        text-align: center;
+        text-align: justify;
 
 
     }
@@ -141,7 +147,7 @@
 
     .title {
         font-size: 20px;
-        height: 33px;
+        height: 60px;
         padding: 10px;
 
         h3 {
