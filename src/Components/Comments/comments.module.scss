@@ -41,6 +41,8 @@
             opacity: 0.3;
             transition: all 0.5s ease-in-out;
 
+
+
             &:active {
 
                 button {
@@ -54,16 +56,19 @@
 
             &:hover {
                 opacity: 1;
-                transform: rotate(359deg);
 
-                button {
+                @media(min-width: 1000px) {
+                    transform: rotate(359deg);
 
-                    &::after {
-                        transform: rotate(-45deg);
-                    }
+                    button {
 
-                    &::before {
-                        transform: rotate(45deg);
+                        &::after {
+                            transform: rotate(-45deg);
+                        }
+
+                        &::before {
+                            transform: rotate(45deg);
+                        }
                     }
                 }
 
@@ -78,6 +83,10 @@
                 border-radius: 50%;
                 cursor: pointer;
 
+                @media(max-width:900px) {
+                    width: 30px;
+                    height: 30px;
+                }
 
                 &::after,
                 &::before {
@@ -85,8 +94,8 @@
                     top: calc(50%);
                     right: calc(50% - 5px);
                     content: '';
-                    width: 10px;
-                    height: 2px;
+                    width: 20px;
+                    height: 3px;
                     background: var(--text-color-brown);
                     z-index: 2;
 
@@ -94,10 +103,18 @@
                 }
 
                 &::after {
+                    @media(max-width:900px) {
+                        transform: rotate(45deg);
+                    }
+
                     transform: rotate(0deg);
                 }
 
                 &::before {
+                    @media(max-width:900px) {
+                        transform: rotate(-45deg);
+                    }
+
                     transform: rotate(0deg);
                 }
 
