@@ -85,7 +85,6 @@ const UserPage: React.FC = () => {
       </div>
       <div className={s.userPosts}>
         <h3>Мои посты:</h3>
-        <hr />
         <div className={s.postsCard}>
           {!posts && <h4>Посты не найдены (</h4>}
           {isLoading ? [...new Array(6)].map((e, i) => < Post key={i} isLoading={true} />) : posts?.map(item => < Post post={item} key={item._id} />)}

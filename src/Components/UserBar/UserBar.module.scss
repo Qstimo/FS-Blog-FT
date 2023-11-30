@@ -83,6 +83,14 @@
         color: var(--text-color-brown);
         transition: all 1s ease-in-out;
 
+        @media(max-width:400px) {
+            min-width: 47px;
+
+            .btnText {
+                display: none;
+            }
+        }
+
         span {
             display: flex;
             align-items: center;

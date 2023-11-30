@@ -41,18 +41,35 @@ const Header: React.FC = () => {
           <Theme />
         </li>
         <li>
-          <Link to={'/'}>  <span>Главная</span><span><HomeSvg /></span></Link>
+          <Link to={'/'} className={s.homeIconContainer}>
+            <span>Главная</span>
+            <span><HomeSvg /></span>
+          </Link>
         </li>
 
         {pathname === '/' &&
           <li className={s.searchContainer} >
-            <span onClick={() => selectSearchOn(!searchOn)}>   Поиск <span><SearchSvg /></span></span>
-            {searchOn && <input value={value} onChange={changeSearch} className={s.search} type="text" />}
+            <div onClick={() => selectSearchOn(!searchOn)}> <span>
+              Поиск
+            </span>
+              {!searchOn && <span className={s.searchSvg}><SearchSvg /></span>}
+            </div>
+            {searchOn && <input value={value} onChange={changeSearch} onBlur={() => selectSearchOn(false)} className={s.search} type="text" />}
           </li>}
       </ul>
       <UserBar />
     </div>
-
+    {pathname === '/' &&
+      <div className={s.searchMobile}>
+        <li className={s.searchContainer} >
+          <div onClick={() => selectSearchOn(!searchOn)}> <span>
+            Поиск
+          </span>
+            {!searchOn && <span className={s.searchSvg}><SearchSvg /></span>}
+          </div>
+          {searchOn && <input value={value} onChange={changeSearch} onBlur={() => selectSearchOn(false)} className={s.search} type="text" />}
+        </li>
+      </div>}
   </div>
 };
 

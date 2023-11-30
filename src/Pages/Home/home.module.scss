@@ -25,6 +25,7 @@
         @media(max-width:700px) {
             border-left: none;
             border-radius: 0;
+            padding: 5px;
         }
 
 
@@ -54,6 +55,12 @@
 .select {
     margin-left: -20px;
     display: flex;
+    letter-spacing: 2px;
+
+    @media(max-width: 700px) {
+        margin-left: -5px;
+        margin-top: -5px;
+    }
 
     span {
         padding: 10px 5px;
@@ -65,10 +72,16 @@
 
         &:last-child {
             border-radius: 0px 0px 10px 0px;
+
         }
 
         &:first-child {
             border-radius: 10px 0px 0px 0px;
+
+            @media(max-width: 700px) {
+                border-radius: 0px 0px 0px 0px;
+
+            }
         }
 
         &.active {

@@ -53,7 +53,10 @@ const UserBar: React.FC = () => {
       {auth ? (
         <>
           <Link to="/created">
-            <button className={s.btn}><span>Создать пост <span><WriteSvg /></span> </span> </button>
+            <button className={s.btn}>
+              <span> <span className={s.btnText}>Создать пост</span>
+                <span><WriteSvg /></span> </span>
+            </button>
           </Link>
           <AvatarUrl onClick={openUserBarFunc} avatarUrl={data?.avatarUrl} />
           <TransitionGroup>
@@ -68,8 +71,12 @@ const UserBar: React.FC = () => {
                   </div>
                   <hr />
                   <ul>
-                    <Link to={'./user'} onClick={() => setOpen(false)}><li>Странница профиля</li></Link>
-                    <li onClick={logoutUser}><span>Выйти <ExitSvg fill={'var(--text-color-brown)'} /></span></li>
+                    <Link to={'./user'} onClick={() => setOpen(false)}>
+                      <li>Странница профиля</li>
+                    </Link>
+                    <li onClick={logoutUser}>
+                      <span>Выйти <ExitSvg fill={'var(--text-color-brown)'} /></span>
+                    </li>
                   </ul>
                 </div>
               </CSSTransition>

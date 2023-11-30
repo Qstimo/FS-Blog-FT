@@ -7,6 +7,11 @@
     width: 1200px;
     transition: all 1s ease-in-out;
 
+    @media(max-width:800px) {
+        grid-template-columns: auto;
+
+    }
+
     p {
         margin: 0;
         cursor: pointer;
@@ -18,8 +23,24 @@
         padding: 20px 10px 40px 20px;
         display: flex;
         border-radius: 0 0 15px 0;
-        border-right: 1px solid black;
-        border-bottom: 1px solid black;
+        border-right: 1px solid var(--text-color);
+        border-bottom: 1px solid var(--text-color);
+
+        @media(max-width:800px) {
+            max-width: 450px;
+            min-width: 400px;
+            border-right: none;
+            border-radius: 0;
+            border-bottom: none;
+            padding: 10px;
+        }
+
+        @media(max-width:400px) {
+            min-width: 300px;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0;
+        }
 
         .userName {
             color: var(--text-color-brown);
@@ -29,18 +50,27 @@
         }
 
         .avatar {
-            max-width: 150px;
-            max-height: 150px;
+            width: 150px;
+            height: 150px;
             overflow: hidden;
             border-radius: 50%;
-            border: 1px solid var(--text-color);
+            border: 2px solid var(--text-color-brown);
             background-color: var(--background-color-App);
 
+            @media(max-width:400px) {
+                width: 100px;
+                height: 100px;
+            }
 
             img {
                 width: 150px;
                 height: 150px;
                 object-fit: cover;
+
+                @media(max-width:400px) {
+                    width: 100px;
+                    height: 100px;
+                }
             }
         }
 
@@ -52,6 +82,7 @@
         text-align: left;
         padding-top: 5px;
         padding-right: 25px;
+
     }
 
     .update {
@@ -62,6 +93,10 @@
             margin-top: 20px;
             margin-bottom: 10px;
             cursor: pointer;
+
+            @media(max-width:400px) {
+                margin-top: 12px;
+            }
         }
     }
 

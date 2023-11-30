@@ -17,6 +17,12 @@
 
         .text {
             font-size: 14px;
+            text-wrap: wrap;
+
+            @media(max-width: 400px) {
+                font-size: 10px;
+
+            }
         }
 
         .navbar {
@@ -28,6 +34,11 @@
                 font-size: 18px;
                 cursor: pointer;
                 box-sizing: border-box;
+
+                @media(max-width: 400px) {
+                    font-size: 14px;
+
+                }
 
                 a {
                     padding: 10px 10px;
