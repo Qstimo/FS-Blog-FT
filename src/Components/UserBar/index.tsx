@@ -7,6 +7,7 @@ import { logout, selectIsAuth, selectUser } from '../../Slice/slices/auth/authSl
 import { useAppDispatch } from '../../Slice/store';
 import AvatarUrl from '../AvatarUrl';
 import { CloseSvg, ExitSvg, WriteSvg } from '../../Img/svg';
+import Button, { ButtonTheme } from '../../Ui/Button';
 
 const UserBar: React.FC = () => {
   const navigate = useNavigate();
@@ -53,10 +54,10 @@ const UserBar: React.FC = () => {
       {auth ? (
         <>
           <Link to="/created">
-            <button className={s.btn}>
+            <Button theme={ButtonTheme.OUTLINE} className={s.btn}>
               <span> <span className={s.btnText}>Создать пост</span>
                 <span><WriteSvg /></span> </span>
-            </button>
+            </Button>
           </Link>
           <AvatarUrl onClick={openUserBarFunc} avatarUrl={data?.avatarUrl} />
           <TransitionGroup>
@@ -85,7 +86,7 @@ const UserBar: React.FC = () => {
       ) : (
         <Link to="/auth">
           {' '}
-          <button className={s.btn}>Войти</button>
+          <Button theme={ButtonTheme.OUTLINE} className={s.btn}>Войти</Button>
         </Link>
       )}
     </div>

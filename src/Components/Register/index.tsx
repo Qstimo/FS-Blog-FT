@@ -2,7 +2,7 @@ import React from 'react'
 import axios, { API_URL } from '../../Utils/axios'
 
 import s from './register.module.scss'
-import Button from '../../Ui/Button';
+import Button, { ButtonTheme } from '../../Ui/Button';
 import Avatar from '../../Img/avatar';
 import { useInput, useValidForm } from '../../hooks/validation';
 import ValidationErorrs from '../../Components/VlidationErorrs';
@@ -112,8 +112,8 @@ const Registration: React.FC<{ edit?: boolean, data?: TUserData | null, setSwitc
                     </label>}
                 {
                     edit
-                        ? <Button disabled={!validUp} children='Изменить данные' />
-                        : <Button disabled={!valid} children='Регистрация' />
+                        ? <Button theme={ButtonTheme.OUTLINE} disabled={!validUp} children='Изменить данные' />
+                        : <Button theme={ButtonTheme.OUTLINE} disabled={!valid} children='Регистрация' />
                 }
             </form></div>
         )

@@ -1,14 +1,34 @@
-import React, { Children } from 'react';
-
+import React, { ButtonHTMLAttributes, Children } from 'react';
 import s from './btn.module.scss'
-
-type ButtoProps = {
-    children: string,
-    disabled?: boolean
-    onClick?: () => void
+import { classNames } from '../../Utils/classNames/classNames';
+export enum ButtonTheme {
+    CLEAR = 'clear',
+    OUTLINE = 'outline',
 }
-const Button: React.FC<ButtoProps> = ({ children, onClick, disabled }) => {
-    return <button disabled={disabled} onClick={onClick} className={s.btn}>{children}</button>
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    disabled?: boolean,
+    onClick?: () => void,
+    theme: ButtonTheme,
+    className?: string,
+}
+
+const Button: React.FC<ButtonProps> = (props) => {
+    const {
+        className = "",
+        disabled,
+        children,
+        onClick,
+        theme
+    } = props
+    const mods: Record<string, boolean> = {
+        [s[theme]]: true,
+    }
+    return <button
+        disabled={disabled}
+        onClick={onClick}
+        className={classNames(s.btn, mods, [className])}>
+        {children}
+    </button>
 
 };
 

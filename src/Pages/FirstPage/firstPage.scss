@@ -102,6 +102,7 @@ $bg-gradient: linear-gradient(180deg,
 
         .background {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             position: absolute;
@@ -154,6 +155,7 @@ $bg-gradient: linear-gradient(180deg,
 
     .section-title__container {
         text-align: center;
+        z-index: 5;
     }
 
     .first_page__link__auth {

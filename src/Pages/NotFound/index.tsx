@@ -1,7 +1,7 @@
 import React from 'react'
 import './notFound.scss'
 import { Link } from 'react-router-dom'
-import Button from '../../Ui/Button'
+import Button, { ButtonTheme } from '../../Ui/Button'
 
 
 const NotFound: React.FC = () => {
@@ -40,7 +40,7 @@ const NotFound: React.FC = () => {
             <div>
                 <h1>404</h1>
                 <p>Мы не смогли найти страницу, которую вы искали. <br /> Возможно, её не существует.</p>
-                <Link to={'/'}><Button children='На главную' /></Link>
+                <Link to={'/'}><Button theme={ButtonTheme.OUTLINE} children='На главную' /></Link>
             </div></div>
     )
 }

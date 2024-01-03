@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectIsAuth } from '../../Slice/slices/auth/authSlice';
 import { Link, Navigate } from 'react-router-dom';
 import { ParticlesContainer } from '../../Ui/ParticlesContainer/ParticlesContainer';
-import Button from '../../Ui/Button';
+import Button, { ButtonTheme } from '../../Ui/Button';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 // import  ParticlesContainer } from '../../Ui/ParticlesContainer/ParticlesContainer';
 
@@ -33,7 +33,7 @@ const Register: React.FC = () => {
                     : <Auth />}
             </div>
             <Link className={s.btnHome} to='/' >
-                <Button>Продолжить без регистрации</Button>
+                <Button theme={ButtonTheme.OUTLINE}>Продолжить без регистрации</Button>
             </Link>
         </div>
         <div className={s.bk}>

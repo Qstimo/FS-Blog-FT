@@ -160,17 +160,12 @@ const Section = ({ id, title, className, bgUrl }) => {
       <div className="wrapper-outer">
         <div className="wrapper-inner">
           <div className="background" style={{ backgroundImage: `url(${bgUrl})` }}>
-            {id === 'fourth' ? (
-              <div className="section-title__container">
-                {' '}
-                <h2 className="section-title">{title}</h2>
-                <Link className="first_page__link first_page__link__auth" to="/auth">
-                  продолжить
-                </Link>
-              </div>
-            ) : (
-              <h2 className="section-title">{title}</h2>
-            )}
+            <h2 className="section-title">{title}</h2>
+            <div className="section-title__container">
+              <Link className="first_page__link first_page__link__auth" to="/auth">
+                войти
+              </Link>
+            </div>
           </div>
         </div>
       </div>

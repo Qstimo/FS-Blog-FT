@@ -2,7 +2,7 @@ import React from 'react'
 import cn from 'classnames'
 import s from './PostAdd.module.scss'
 import { useInput } from '../../hooks/validation'
-import Button from '../../Ui/Button'
+import Button, { ButtonTheme } from '../../Ui/Button'
 import { Loading, RemoveSvg } from '../../Img/svg'
 import axios, { API_URL } from '../../Utils/axios'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -87,7 +87,7 @@ const PostAdd: React.FC = () => {
                     ? (<><img className={s.image} src={`${API_URL}${img}`} alt="uploading img" />
                         <button className={s.deleteImg} onClick={() => setImg('')} ><RemoveSvg /></button></>
                     ) : <div className={s.btnSub}>
-                        <Button onClick={() => imgRef.current?.click()} children='Загрузить превью' />
+                        <Button theme={ButtonTheme.OUTLINE} onClick={() => imgRef.current?.click()} children='Загрузить превью' />
                     </div>}
 
                 <input ref={imgRef} onChange={handleCangeFile} type="file" hidden />
@@ -101,7 +101,7 @@ const PostAdd: React.FC = () => {
                 </label>
                 <textarea onBlur={e => text.onBlur(e)} onChange={e => text.onChange(e)} value={text.value} placeholder='Текст статьи' className={s.text}></textarea>
                 <div className={s.btnSub}>
-                    <Button children='Отправить' />
+                    <Button theme={ButtonTheme.OUTLINE} children='Отправить' />
                 </div>
             </form>
 

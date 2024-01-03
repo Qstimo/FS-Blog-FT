@@ -2,7 +2,7 @@ import React from 'react'
 
 
 import s from './auth.module.scss'
-import Button from '../../Ui/Button';
+import Button, { ButtonTheme } from '../../Ui/Button';
 
 import { useInput, useValidForm } from '../../hooks/validation';
 import ValidationErorrs from '../VlidationErorrs';
@@ -51,7 +51,7 @@ const Auth: React.FC = () => {
                 <ValidationErorrs array={password.stringErorr} />
                 <input value={password.value} onBlur={e => password.onBlur(e)} onChange={e => password.onChange(e)} type="password" required placeholder='******' />
             </label>
-            <Button disabled={!valid} children='Авторизация' />
+            <Button theme={ButtonTheme.OUTLINE} disabled={!valid} children='Авторизация' />
         </form>
 
     )
