@@ -30,9 +30,7 @@
                     padding: 10px 10px;
                     color: var(--text-color-brown);
 
-                    &:hover {
-                        box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
-                    }
+                    &:hover {}
                 }
             }
 
@@ -41,9 +39,14 @@
 
     .homeIconContainer {
         position: relative;
+        opacity: 0.9;
+
+        &:hover {
+            opacity: 1;
+        }
 
         span:first-child {
-            padding-right: 20px;
+            padding-right: 18px;
 
             @media(max-width:750px) {
                 display: none;
@@ -54,31 +57,33 @@
         span:last-child {
             position: absolute;
             top: 5px;
-            right: -1px;
+            right: -5px;
 
         }
     }
 
     .searchContainer {
         position: relative;
-        padding: 2px 0px 0 0;
+        padding: 2px 0 0 0;
+        opacity: 0.8;
+
+        &:hover {
+            opacity: 1;
+        }
 
         @media(max-width:650px) {
             display: none;
         }
 
-        &:hover {
-            .search {}
-        }
 
         span:first-child {
-            padding-right: 20px;
+            padding-right: 22px;
         }
 
         .searchSvg {
             transition: all 1s ease-in-out;
             position: absolute;
-            top: 1px;
+            top: -2px;
             right: -10px;
         }
 
@@ -89,7 +94,6 @@
             position: absolute;
             left: 70px;
             top: -8px;
-
             display: block;
             width: 200px;
             transition: all 0.3s ease-in;
@@ -97,6 +101,7 @@
 
             animation-name: search;
             animation-duration: 1s;
+
 
             &:hover,
             &:active,

@@ -3,7 +3,7 @@ import cn from 'classnames'
 import s from './PostAdd.module.scss'
 import { useInput } from '../../hooks/validation'
 import Button from '../../Ui/Button'
-import { RemoveSvg } from '../../Img/svg'
+import { Loading, RemoveSvg } from '../../Img/svg'
 import axios, { API_URL } from '../../Utils/axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import ValidationErorrs from '../../Components/VlidationErorrs'
@@ -17,9 +17,11 @@ const PostAdd: React.FC = () => {
     const { id } = useParams();
     const isEdit = Boolean(id)
     const [img, setImg] = React.useState('');
+    const [isLoading, setIsLoading] = React.useState(false);
 
     React.useEffect(() => {
         if (isEdit) {
+            setIsLoading(true);
             axios
                 .get(`posts/${id}`)
                 .then(({ data }) => {
@@ -29,6 +31,8 @@ const PostAdd: React.FC = () => {
                     setImg(data.imageUrl)
                 }).catch(erorr => {
                     console.warn(erorr);
+                }).finally(() => {
+                    setIsLoading(false);
                 })
         }
     }, []);
@@ -71,6 +75,9 @@ const PostAdd: React.FC = () => {
         } catch (error) {
             alert('Error uploading')
         }
+    }
+    if (isEdit && isLoading) {
+        return <Loading />
     }
     return (
 

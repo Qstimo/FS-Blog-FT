@@ -35,6 +35,7 @@ const CommentAdd: React.FC<TComment> = ({ id, setComments, comments, setSend, se
                 : await axios.post(`/posts/${id}/comments`, files)
             setSend(!send)
             text.setValue('')
+            setOpenArea(false)
         } catch (error) {
             console.warn(error);
             alert('Ошибка загрузки');

@@ -9,9 +9,6 @@
     svg {
         fill: var(--text-color);
     }
-
-
-
 }
 
 .viewsSvg {
@@ -55,12 +52,10 @@
         width: 25px;
         height: 25px;
         stroke: var(--text-color-brown);
-
     }
 }
 
 .SendSvg {
-
     opacity: 0.7;
     z-index: 2;
     cursor: pointer;
@@ -69,8 +64,6 @@
         opacity: 1;
         font-weight: 700;
     }
-
-
 
     svg {
         width: 65px;
@@ -91,8 +84,6 @@
     z-index: 2;
     cursor: pointer;
 
-
-
     svg {
         fill: var(--text-color);
 
@@ -103,14 +94,13 @@
 .search {
     width: 30px;
     height: 30px;
-    opacity: 0.7;
+    opacity: 0.8;
     z-index: 2;
     cursor: pointer;
 
     &:hover {
         opacity: 1;
     }
-
 
     svg {
         width: 30px;
@@ -132,7 +122,5 @@
     svg {
         fill: var(--text-color);
         stroke: var(--text-color);
-
-
     }
 }
