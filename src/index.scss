@@ -20,9 +20,6 @@ a {
   text-decoration: none;
 }
 
-
-
-// src/index.scss
 :root[data-theme="light"] {
   --background-color-content: #ebebf9;
   --background-color: #F3F3FB;
@@ -30,7 +27,7 @@ a {
   --text-color: #1C1E21;
   --text-color-brown: #2F2222;
   --color-btn: linear-gradient(45deg, rgb(242, 209, 255), rgb(86, 181, 184));
-
+  --background-color-inverted: #bbbbbb;
 }
 
 :root[data-theme="dark"] {
@@ -40,6 +37,9 @@ a {
   --text-color: #f5f6f7;
   --text-color-brown: #bb9e9e;
   --color-btn: linear-gradient(45deg, rgb(96, 62, 108), rgb(66, 19, 80));
+  --background-color-inverted: #484848;
+  ;
+
 }
 
 body {
